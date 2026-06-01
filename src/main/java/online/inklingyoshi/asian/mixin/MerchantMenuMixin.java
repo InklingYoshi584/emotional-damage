@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MerchantMenuMixin {
 
     @Shadow
-    public java.util.List<Slot> slots;
+    public abstract Slot getSlot(int index);
 
     @Inject(method = "clicked", at = @At("HEAD"))
     private void detectTradeEmeralds(int slotIndex, int button, ContainerInput input, Player player, CallbackInfo ci) {
@@ -31,7 +31,7 @@ public abstract class MerchantMenuMixin {
         if (!(player instanceof IPlayerStatsTracker tracker)) {
             return;
         }
-        Slot resultSlot = slots.get(2);
+        Slot resultSlot = getSlot(2);
         ItemStack stack = resultSlot.getItem();
         if (stack.getItem() == Items.EMERALD && stack.getCount() > 0) {
             tracker.emotionalDamage$addDayEmeralds(stack.getCount());
