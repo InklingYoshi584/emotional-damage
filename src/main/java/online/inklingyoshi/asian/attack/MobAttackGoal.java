@@ -118,7 +118,7 @@ public class MobAttackGoal extends Goal {
             if (player.position().distanceToSqr(mob.position()) <= rangeSq) {
                 try {
                     if (pendingInsult.criteria().test(mob, player, serverLevel)) {
-                        DamageSource source = ModDamageTypes.emotionalDamageSource(serverLevel, mob);
+                        DamageSource source = ModDamageTypes.source(serverLevel, mob, pendingInsult.damageType());
                         player.hurt(source, Float.MAX_VALUE);
                     }
                 } catch (Exception e) {

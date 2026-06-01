@@ -55,7 +55,7 @@ public final class MobInsults {
                 }
                 return false;
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.TOO_FAT
         ));
 
         register(new MobInsult(
@@ -72,7 +72,7 @@ public final class MobInsults {
                 }
                 return false;
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.MINIMUM_WAGE
         ));
 
         register(new MobInsult(
@@ -87,7 +87,7 @@ public final class MobInsults {
                 }
                 return false;
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.UNEMPLOYED
         ));
 
         register(new MobInsult(
@@ -100,7 +100,7 @@ public final class MobInsults {
                 ModDifficulty diff = DifficultyHelper.getModDifficulty(serverLevel.getServer());
                 return diff == ModDifficulty.ASIAN_UPPER ? hunger < 20 : hunger < 16;
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.TOO_SKINNY
         ));
 
         register(new MobInsult(
@@ -116,7 +116,7 @@ public final class MobInsults {
                 }
                 return !hasStoneOrBetter(player);
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.TOO_STUPID
         ));
 
         registerExtendedOnly(new MobInsult(
@@ -130,7 +130,7 @@ public final class MobInsults {
                 }
                 return false;
             },
-            ModDamageTypes.EMOTIONAL_DAMAGE
+            ModDamageTypes.SUCKS_AT_GAME
         ));
     }
 

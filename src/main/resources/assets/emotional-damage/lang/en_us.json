@@ -1,4 +1,16 @@
 {
   "death.attack.emotionalDamage": "%1$s got EMOTIONAL DAMAGE",
-  "death.attack.emotionalDamage.player": "%1$s got EMOTIONAL DAMAGE"
+  "death.attack.emotionalDamage.player": "%1$s got EMOTIONAL DAMAGE",
+  "death.attack.tooFat": "%1$s was TOO FAT",
+  "death.attack.tooFat.player": "%1$s was TOO FAT",
+  "death.attack.minimumWage": "%1$s had MINIMUM WAGE",
+  "death.attack.minimumWage.player": "%1$s had MINIMUM WAGE",
+  "death.attack.unemployed": "%1$s was UNEMPLOYED",
+  "death.attack.unemployed.player": "%1$s was UNEMPLOYED",
+  "death.attack.tooSkinny": "%1$s was TOO SKINNY",
+  "death.attack.tooSkinny.player": "%1$s was TOO SKINNY",
+  "death.attack.tooStupid": "%1$s was TOO STOOBID",
+  "death.attack.tooStupid.player": "%1$s was TOO STOOBID",
+  "death.attack.sucksAtGame": "%1$s SUCKS AT THE GAME",
+  "death.attack.sucksAtGame.player": "%1$s SUCKS AT THE GAME"
 }
