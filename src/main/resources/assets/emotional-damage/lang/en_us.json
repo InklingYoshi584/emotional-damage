@@ -12,5 +12,13 @@
   "death.attack.tooStupid": "%1$s was TOO STOOBID",
   "death.attack.tooStupid.player": "%1$s was TOO STOOBID",
   "death.attack.sucksAtGame": "%1$s SUCKS AT THE GAME",
-  "death.attack.sucksAtGame.player": "%1$s SUCKS AT THE GAME"
+  "death.attack.sucksAtGame.player": "%1$s SUCKS AT THE GAME",
+  "death.attack.hitByBlock": "%1$s was hit by %2$s",
+  "death.attack.hitByBlock.player": "%1$s was hit by %2$s",
+  "death.attack.poisonGrass": "%1$s died from POISON GRASS",
+  "death.attack.poisonGrass.player": "%1$s died from POISON GRASS",
+  "death.attack.hitByLeaf": "%1$s was hit by LEAF",
+  "death.attack.hitByLeaf.player": "%1$s was hit by LEAF",
+  "death.attack.socialAnxiety": "%1$s has SOCIAL ANXIETY",
+  "death.attack.socialAnxiety.player": "%1$s has SOCIAL ANXIETY"
 }

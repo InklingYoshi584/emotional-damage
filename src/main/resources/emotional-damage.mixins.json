@@ -10,7 +10,14 @@
 		"FoodPropertiesMixin",
 		"PlayerStatsMixin",
 		"MerchantMenuMixin",
-		"PlayerAttackMixin"
+		"PlayerAttackMixin",
+		"PhantomMixin",
+		"PhantomSpawnerMixin",
+		"PlayerBlockPunchMixin",
+		"PlayerCollisionMixin",
+		"PlayerGrassLeafMixin",
+		"PlayerSocialAnxietyMixin",
+		"PlayerAttributeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
