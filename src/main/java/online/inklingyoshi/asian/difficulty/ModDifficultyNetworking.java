@@ -1,6 +1,7 @@
 package online.inklingyoshi.asian.difficulty;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.world.Difficulty;
 import online.inklingyoshi.asian.network.ModDifficultyPayload;
@@ -24,6 +25,14 @@ public final class ModDifficultyNetworking {
                     context.server().setDifficulty(forced, true);
                 }
             });
+        });
+
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            ModDifficultyState state = ModDifficultyState.getOrCreate(server);
+            ModDifficulty current = state.getDifficulty();
+            if (current != ModDifficulty.NORMAL) {
+                ServerPlayNetworking.send(handler.player, new ModDifficultyPayload(current));
+            }
         });
     }
 }
