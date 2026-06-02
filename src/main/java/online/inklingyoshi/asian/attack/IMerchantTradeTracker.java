@@ -1,5 +1,5 @@
 package online.inklingyoshi.asian.attack;
 
-public interface IPlayerTradeMarker {
+public interface IMerchantTradeTracker {
     void emotionalDamage$markTrade();
 }

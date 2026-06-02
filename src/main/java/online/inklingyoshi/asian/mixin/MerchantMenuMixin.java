@@ -36,8 +36,8 @@ public abstract class MerchantMenuMixin {
         if (stack.getItem() == Items.EMERALD && stack.getCount() > 0) {
             tracker.emotionalDamage$addDayEmeralds(stack.getCount());
         }
-        if (!stack.isEmpty() && player instanceof online.inklingyoshi.asian.attack.IPlayerTradeMarker marker) {
-            marker.emotionalDamage$markTrade();
+        if (!stack.isEmpty() && ((Object) this instanceof online.inklingyoshi.asian.attack.IMerchantTradeTracker tradeTracker)) {
+            tradeTracker.emotionalDamage$markTrade();
         }
     }
 }

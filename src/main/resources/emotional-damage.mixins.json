@@ -16,7 +16,7 @@
 		"PlayerBlockPunchMixin",
 		"PlayerCollisionMixin",
 		"PlayerGrassLeafMixin",
-		"PlayerSocialAnxietyMixin",
+		"MerchantSafetyMixin",
 		"PlayerAttributeMixin"
 	],
 	"injectors": {
