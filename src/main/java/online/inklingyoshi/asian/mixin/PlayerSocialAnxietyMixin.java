@@ -1,8 +1,6 @@
 package online.inklingyoshi.asian.mixin;
 
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MerchantMenu;
 import online.inklingyoshi.asian.attack.IPlayerTradeMarker;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
@@ -15,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Player.class)
+@Mixin(ServerPlayer.class)
 public abstract class PlayerSocialAnxietyMixin implements IPlayerTradeMarker {
 
     @Unique
@@ -28,15 +26,14 @@ public abstract class PlayerSocialAnxietyMixin implements IPlayerTradeMarker {
 
     @Inject(method = "closeContainer", at = @At("HEAD"))
     private void onCloseContainer(CallbackInfo ci) {
-        Player self = (Player) (Object) this;
-        if (!(self instanceof ServerPlayer player)) return;
+        ServerPlayer self = (ServerPlayer) (Object) this;
 
-        if (!(player.containerMenu instanceof MerchantMenu)) return;
+        if (!(self.containerMenu instanceof MerchantMenu)) return;
 
-        if (DifficultyHelper.getModDifficulty(((ServerLevel) player.level()).getServer()) != ModDifficulty.ASIAN_UPPER) return;
+        if (DifficultyHelper.getModDifficulty(self.level().getServer()) != ModDifficulty.ASIAN_UPPER) return;
 
         if (!emotionalDamage$tradedInMenu) {
-            player.hurt(ModDamageTypes.simpleSource((ServerLevel) player.level(), ModDamageTypes.SOCIAL_ANXIETY), Float.MAX_VALUE);
+            self.hurt(ModDamageTypes.simpleSource(self.level(), ModDamageTypes.SOCIAL_ANXIETY), Float.MAX_VALUE);
         }
     }
 
