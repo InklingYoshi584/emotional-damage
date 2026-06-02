@@ -5,9 +5,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import online.inklingyoshi.asian.difficulty.ModDifficulty;
 import online.inklingyoshi.asian.util.DifficultyHelper;
@@ -117,9 +119,23 @@ public class MobAttackGoal extends Goal {
         for (Player player : serverLevel.players()) {
             if (player.position().distanceToSqr(mob.position()) <= rangeSq) {
                 try {
-                    if (pendingInsult.criteria().test(mob, player, serverLevel)) {
+                    boolean criteriaMet = pendingInsult.criteria().test(mob, player, serverLevel);
+                    ModDifficulty diff = DifficultyHelper.getModDifficulty(serverLevel.getServer());
+
+                    if (criteriaMet) {
                         DamageSource source = ModDamageTypes.source(serverLevel, mob, pendingInsult.damageType());
                         player.hurt(source, Float.MAX_VALUE);
+                    } else if (player.isBlocking()) {
+                        DamageSource source = ModDamageTypes.source(serverLevel, mob, ModDamageTypes.EMOTIONAL_DAMAGE);
+                        player.hurt(source, 4.0f);
+
+                        if (diff == ModDifficulty.ASIAN_UPPER && player.isAlive() && player.isBlocking()) {
+                            ItemStack shield = player.getItemBlockingWith();
+                            if (!shield.isEmpty()) {
+                                shield.hurtAndBreak(shield.getMaxDamage() + 1, player,
+                                    player.getUsedItemHand());
+                            }
+                        }
                     }
                 } catch (Exception e) {
                     org.slf4j.LoggerFactory.getLogger("emotional-damage").warn("Error evaluating insult criteria", e);
