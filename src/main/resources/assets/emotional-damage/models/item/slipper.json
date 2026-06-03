@@ -1,12 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/handheld",
-    "firstperson_righthand": {
-      "scale": [1, 1, 0.2]
-    },
-    "textures": {
-      "layer0": "emotional-damage:item/slipper"
-    }
+    "model": "minecraft:item/trident"
   }
 }

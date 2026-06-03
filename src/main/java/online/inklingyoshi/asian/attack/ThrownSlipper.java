@@ -17,12 +17,16 @@ public class ThrownSlipper extends AbstractArrow {
         super(type, level);
     }
 
-    public ThrownSlipper(Level level, LivingEntity owner, ItemStack weaponStack) {
-        super(ModEntities.THROWN_SLIPPER, owner, level, weaponStack, ItemStack.EMPTY);
+    public ThrownSlipper(Level level, LivingEntity owner, ItemStack slipperStack) {
+        super(ModEntities.THROWN_SLIPPER, owner, level, ItemStack.EMPTY, slipperStack);
     }
 
-    public ThrownSlipper(Level level, double x, double y, double z, ItemStack weaponStack) {
-        super(ModEntities.THROWN_SLIPPER, x, y, z, level, weaponStack, ItemStack.EMPTY);
+    public ThrownSlipper(Level level, double x, double y, double z, ItemStack slipperStack) {
+        super(ModEntities.THROWN_SLIPPER, x, y, z, level, ItemStack.EMPTY, slipperStack);
+    }
+
+    private ItemStack getSlipperStack() {
+        return getPickupItemStackOrigin();
     }
 
     @Override
@@ -34,7 +38,7 @@ public class ThrownSlipper extends AbstractArrow {
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         dealtDamage = true;
-        ItemStack stack = getWeaponItem();
+        ItemStack stack = getSlipperStack();
         if (!stack.isEmpty()) {
             int oldXp = SlipperHelper.getXp(stack);
             SlipperHelper.addXp(stack, 1);
@@ -54,10 +58,10 @@ public class ThrownSlipper extends AbstractArrow {
             return;
         }
 
-        if (dealtDamage && SlipperHelper.hasLoyalty(SlipperHelper.getXp(getWeaponItem()))) {
+        if (dealtDamage && SlipperHelper.hasLoyalty(SlipperHelper.getXp(getSlipperStack()))) {
             if (getOwner() instanceof LivingEntity owner && owner.isAlive()) {
                 if (getOwner() instanceof ServerPlayer sp && sp.isSpectator()) return;
-                ItemStack stack = getWeaponItem();
+                ItemStack stack = getSlipperStack();
                 if (!stack.isEmpty()) {
                     if (owner instanceof Player player) {
                         player.getInventory().add(stack);
