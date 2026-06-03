@@ -5,6 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
@@ -16,8 +17,10 @@ public class ThrownItemProjectile extends AbstractArrow {
         super(type, level);
     }
 
+    private static final ItemStack DUMMY_WEAPON = new ItemStack(Items.TRIDENT);
+
     public ThrownItemProjectile(ServerLevel level, LivingEntity owner, ItemStack item) {
-        super(ModEntities.THROWN_ITEM, owner, level, ItemStack.EMPTY, item.copy());
+        super(ModEntities.THROWN_ITEM, owner, level, DUMMY_WEAPON, item.copy());
         this.carriedItem = item.copy();
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
@@ -19,13 +20,15 @@ public class ThrownSlipper extends AbstractArrow {
         super(type, level);
     }
 
+    private static final ItemStack DUMMY_WEAPON = new ItemStack(Items.TRIDENT);
+
     public ThrownSlipper(Level level, LivingEntity owner, ItemStack slipperStack) {
-        super(ModEntities.THROWN_SLIPPER, owner, level, ItemStack.EMPTY, slipperStack);
+        super(ModEntities.THROWN_SLIPPER, owner, level, DUMMY_WEAPON, slipperStack);
         this.pickup = Pickup.ALLOWED;
     }
 
     public ThrownSlipper(Level level, double x, double y, double z, ItemStack slipperStack) {
-        super(ModEntities.THROWN_SLIPPER, x, y, z, level, ItemStack.EMPTY, slipperStack);
+        super(ModEntities.THROWN_SLIPPER, x, y, z, level, DUMMY_WEAPON, slipperStack);
         this.pickup = Pickup.ALLOWED;
     }
 
