@@ -17,6 +17,7 @@
 		"PlayerCollisionMixin",
 		"PlayerGrassLeafMixin",
 		"MerchantSafetyMixin",
+		"EnderDragonMixin",
 		"PlayerAttributeMixin"
 	],
 	"injectors": {

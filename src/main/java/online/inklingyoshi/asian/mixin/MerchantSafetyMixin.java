@@ -8,7 +8,6 @@ import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
 import online.inklingyoshi.asian.attack.IMerchantTradeTracker;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
-import online.inklingyoshi.asian.difficulty.ModDifficulty;
 import online.inklingyoshi.asian.util.DifficultyHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,7 +30,7 @@ public class MerchantSafetyMixin implements IMerchantTradeTracker {
     private void onClose(Player player, CallbackInfo ci) {
         if (!(player instanceof ServerPlayer sp)) return;
 
-        if (DifficultyHelper.getModDifficulty(((ServerLevel) sp.level()).getServer()) != ModDifficulty.ASIAN_UPPER) return;
+        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) sp.level()).getServer())) return;
 
         if (!emotionalDamage$traded) {
             sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.SOCIAL_ANXIETY), Float.MAX_VALUE);
