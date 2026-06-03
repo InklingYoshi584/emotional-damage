@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "minecraft:item/trident"
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "emotional-damage:item/slipper"
   }
 }

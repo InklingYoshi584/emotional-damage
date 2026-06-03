@@ -1,7 +1,9 @@
 package online.inklingyoshi.asian.attack;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -14,11 +16,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import java.util.function.Consumer;
 
 public class SlipperItem extends Item implements ProjectileItem {
 
@@ -102,5 +107,16 @@ public class SlipperItem extends Item implements ProjectileItem {
                 new AttributeModifier(BASE_ATTACK_SPEED_ID, 0.0, AttributeModifier.Operation.ADD_VALUE),
                 EquipmentSlotGroup.MAINHAND)
             .build();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> tooltipAdder, TooltipFlag flag) {
+        int xp = SlipperHelper.getXp(stack);
+        int dmg = SlipperHelper.getDamageForXp(xp);
+        tooltipAdder.accept(Component.literal("XP: " + xp).withStyle(ChatFormatting.GRAY));
+        tooltipAdder.accept(Component.literal("Damage: " + dmg).withStyle(ChatFormatting.RED));
+        if (SlipperHelper.canThrowItems(xp)) {
+            tooltipAdder.accept(Component.literal("Can throw items").withStyle(ChatFormatting.GOLD));
+        }
     }
 }

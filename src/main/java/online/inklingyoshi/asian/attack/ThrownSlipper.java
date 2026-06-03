@@ -1,5 +1,7 @@
 package online.inklingyoshi.asian.attack;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,10 +21,12 @@ public class ThrownSlipper extends AbstractArrow {
 
     public ThrownSlipper(Level level, LivingEntity owner, ItemStack slipperStack) {
         super(ModEntities.THROWN_SLIPPER, owner, level, ItemStack.EMPTY, slipperStack);
+        this.pickup = Pickup.ALLOWED;
     }
 
     public ThrownSlipper(Level level, double x, double y, double z, ItemStack slipperStack) {
         super(ModEntities.THROWN_SLIPPER, x, y, z, level, ItemStack.EMPTY, slipperStack);
+        this.pickup = Pickup.ALLOWED;
     }
 
     private ItemStack getSlipperStack() {
@@ -32,6 +36,11 @@ public class ThrownSlipper extends AbstractArrow {
     @Override
     protected ItemStack getDefaultPickupItem() {
         return new ItemStack(ModItems.SLIPPER);
+    }
+
+    @Override
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return SoundEvents.WOOD_HIT;
     }
 
     @Override

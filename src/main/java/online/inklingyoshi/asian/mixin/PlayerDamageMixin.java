@@ -26,6 +26,7 @@ public class PlayerDamageMixin {
 
         if (tierDamage > 1) {
             float bonusDamage = tierDamage - 1.0F;
+            target.invulnerableTime = 0;
             target.hurtServer(serverLevel, serverLevel.damageSources().playerAttack(self), bonusDamage);
         }
     }

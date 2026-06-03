@@ -54,4 +54,8 @@ public final class SlipperHelper {
     public static boolean hasLoyalty(int xp) {
         return xp >= 600;
     }
+
+    public static boolean canThrowItems(int xp) {
+        return xp >= 1000;
+    }
 }
