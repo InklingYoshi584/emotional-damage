@@ -9,11 +9,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 
 public class ThrownSlipper extends AbstractArrow {
 
     private boolean dealtDamage;
+    private boolean loyaltyReturned;
 
     public ThrownSlipper(EntityType<? extends ThrownSlipper> type, Level level) {
         super(type, level);
@@ -42,6 +44,16 @@ public class ThrownSlipper extends AbstractArrow {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
+        markHit();
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
+        markHit();
+    }
+
+    private void markHit() {
         dealtDamage = true;
         ItemStack stack = getWeaponItem();
         if (!stack.isEmpty()) {
@@ -63,7 +75,8 @@ public class ThrownSlipper extends AbstractArrow {
             return;
         }
 
-        if (dealtDamage && SlipperHelper.hasLoyalty(SlipperHelper.getXp(getWeaponItem()))) {
+        if (!loyaltyReturned && dealtDamage && SlipperHelper.hasLoyalty(SlipperHelper.getXp(getWeaponItem()))) {
+            loyaltyReturned = true;
             if (getOwner() instanceof LivingEntity owner && owner.isAlive()) {
                 if (getOwner() instanceof ServerPlayer sp && sp.isSpectator()) return;
                 ItemStack stack = getWeaponItem();
@@ -72,8 +85,8 @@ public class ThrownSlipper extends AbstractArrow {
                         player.getInventory().add(stack);
                     }
                 }
-                discard();
             }
+            discard();
         }
     }
 }
