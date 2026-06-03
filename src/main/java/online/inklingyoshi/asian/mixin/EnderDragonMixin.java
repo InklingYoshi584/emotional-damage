@@ -20,7 +20,7 @@ public class EnderDragonMixin {
     @Unique
     private boolean emotionalDamage$hasPerched;
 
-    @Inject(method = "tick", at = @At("TAIL"))
+    @Inject(method = "aiStep", at = @At("TAIL"))
     private void checkPerchKill(CallbackInfo ci) {
         EnderDragon self = (EnderDragon) (Object) this;
         if (!(self.level() instanceof ServerLevel serverLevel)) return;
