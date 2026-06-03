@@ -21,7 +21,8 @@
 		"PlayerDamageMixin",
 		"PlayerAbilityMixin",
 		"ItemUseMixin",
-		"PlayerAttributeMixin"
+		"PlayerAttributeMixin",
+		"ItemPropertiesAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
