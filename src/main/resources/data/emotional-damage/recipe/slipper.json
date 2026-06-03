@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:leather" },
+    { "item": "minecraft:leather" }
+  ],
+  "result": {
+    "id": "emotional-damage:slipper",
+    "count": 1
+  }
+}
