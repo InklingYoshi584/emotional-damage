@@ -104,6 +104,15 @@ public final class MobInsults {
         ));
 
         register(new MobInsult(
+            "They sent you?",
+            null,
+            0,
+            16f,
+            (mob, player, serverLevel) -> player.getArrowCount() > 0,
+            ModDamageTypes.EMOTIONAL_DAMAGE
+        ));
+
+        register(new MobInsult(
             "You so stoopid you don't have stone tools",
             null,
             0,
