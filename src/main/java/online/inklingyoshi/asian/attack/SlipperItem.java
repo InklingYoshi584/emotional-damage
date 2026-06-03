@@ -56,6 +56,7 @@ public class SlipperItem extends Item implements ProjectileItem {
         }
 
         SlipperHelper.addXp(thrownStack, 1);
+        checkUnlock(thrownStack, entity);
 
         serverLevel.addFreshEntity(thrown);
         serverLevel.playSound(null, thrown, SoundEvents.TRIDENT_THROW.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -70,7 +71,18 @@ public class SlipperItem extends Item implements ProjectileItem {
 
     @Override
     public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        int oldXp = SlipperHelper.getXp(stack);
         SlipperHelper.addXp(stack, 1);
+        checkUnlock(stack, attacker);
+    }
+
+    private void checkUnlock(ItemStack stack, LivingEntity attacker) {
+        int xp = SlipperHelper.getXp(stack);
+        if (xp >= 1000 && xp - 1 < 1000) {
+            if (attacker instanceof Player player) {
+                PlayerAbilityTracker.setThrowUnlock(player, true);
+            }
+        }
     }
 
     @Override

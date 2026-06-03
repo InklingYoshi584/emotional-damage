@@ -21,11 +21,26 @@ public final class ModEntities {
             Identifier.fromNamespaceAndPath(EmotionalDamage.MOD_ID, "thrown_slipper")
         ));
 
+    public static final EntityType<ThrownItemProjectile> THROWN_ITEM = EntityType.Builder
+        .<ThrownItemProjectile>of(ThrownItemProjectile::new, MobCategory.MISC)
+        .sized(0.25F, 0.25F)
+        .clientTrackingRange(4)
+        .updateInterval(20)
+        .build(ResourceKey.create(
+            BuiltInRegistries.ENTITY_TYPE.key(),
+            Identifier.fromNamespaceAndPath(EmotionalDamage.MOD_ID, "thrown_item")
+        ));
+
     public static void register() {
         Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             Identifier.fromNamespaceAndPath(EmotionalDamage.MOD_ID, "thrown_slipper"),
             THROWN_SLIPPER
+        );
+        Registry.register(
+            BuiltInRegistries.ENTITY_TYPE,
+            Identifier.fromNamespaceAndPath(EmotionalDamage.MOD_ID, "thrown_item"),
+            THROWN_ITEM
         );
     }
 }

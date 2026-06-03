@@ -19,6 +19,8 @@
 		"MerchantSafetyMixin",
 		"EnderDragonMixin",
 		"PlayerDamageMixin",
+		"PlayerAbilityMixin",
+		"ItemUseMixin",
 		"PlayerAttributeMixin"
 	],
 	"injectors": {

@@ -36,6 +36,7 @@ public final class SlipperHelper {
     }
 
     public static int getDamageForXp(int xp) {
+        if (xp >= 1000) return 8;
         if (xp >= 600) return 7;
         if (xp >= 300) return 5;
         if (xp >= 200) return 4;
