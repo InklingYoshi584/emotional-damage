@@ -3,7 +3,7 @@
 ## Quick Reference
 
 - **Build**: `./gradlew.bat build`
-- **Compile only**: `./gradlew.bat compileJava`
+- **Compile only**: `./gradlew.bat compileJava` — **ALWAYS use this first to validate code**, it's faster than full `build` and catches all errors. Only run `build` for final verification.
 - **Java**: 25 (`--release 25`), JDK at `C:/Program Files/Java/jdk-26.0.1`
 - **Minecraft**: 26.1 (intermediary/yarn mappings), Fabric Loader 0.19.2, Fabric API 0.145.1+26.1
 - **Game run config**: `run/` directory, use `gradlew.bat runClient`

@@ -26,7 +26,8 @@
 		"ArtDegreeMixin",
 		"BookSignMixin",
 		"NoteblockMixin",
-		"JukeboxMixin"
+		"JukeboxMixin",
+		"TotemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
