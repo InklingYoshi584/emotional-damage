@@ -29,7 +29,8 @@
 		"JukeboxMixin",
 		"TotemMixin",
 		"PlayerIdleMixin",
-		"ItemTaxMixin"
+		"ItemTaxMixin",
+		"CheaterMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

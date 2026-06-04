@@ -28,5 +28,7 @@
   "death.attack.failureSkillIssue": "%1$s tried to use a totem of undying to hide their FAILURE SKILL ISSUE",
   "death.attack.failureSkillIssue.player": "%1$s tried to use a totem of undying to hide their FAILURE SKILL ISSUE",
   "death.attack.tooLazy": "%1$s was TOO LAZY TO MOVE",
-  "death.attack.tooLazy.player": "%1$s was TOO LAZY TO MOVE"
+  "death.attack.tooLazy.player": "%1$s was TOO LAZY TO MOVE",
+  "death.attack.cheater": "%1$s tried to beat the game as a CHEATER(FAILURE)",
+  "death.attack.cheater.player": "%1$s tried to beat the game as a CHEATER(FAILURE)"
 }
