@@ -24,7 +24,9 @@
 		"PlayerAttributeMixin",
 		"ItemPropertiesAccessor",
 		"ArtDegreeMixin",
-		"BookSignMixin"
+		"BookSignMixin",
+		"NoteblockMixin",
+		"JukeboxMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

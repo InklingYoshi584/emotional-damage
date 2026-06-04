@@ -22,5 +22,7 @@
   "death.attack.socialAnxiety": "%1$s has SOCIAL ANXIETY",
   "death.attack.socialAnxiety.player": "%1$s has SOCIAL ANXIETY",
   "death.attack.artDegree": "%1$s has an ART DEGREE",
-  "death.attack.artDegree.player": "%1$s has an ART DEGREE"
+  "death.attack.artDegree.player": "%1$s has an ART DEGREE",
+  "death.attack.musician": "%1$s aspires to be a MUSICIAN(homeless)",
+  "death.attack.musician.player": "%1$s aspires to be a MUSICIAN(homeless)"
 }

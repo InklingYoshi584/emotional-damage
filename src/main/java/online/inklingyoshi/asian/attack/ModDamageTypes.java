@@ -28,6 +28,7 @@ public final class ModDamageTypes {
     public static final ResourceKey<DamageType> HIT_BY_LEAF = key("hit_by_leaf");
     public static final ResourceKey<DamageType> SOCIAL_ANXIETY = key("social_anxiety");
     public static final ResourceKey<DamageType> ART_DEGREE = key("art_degree");
+    public static final ResourceKey<DamageType> MUSICIAN = key("musician");
 
     private static ResourceKey<DamageType> key(String name) {
         return ResourceKey.create(
