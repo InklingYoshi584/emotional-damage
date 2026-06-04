@@ -11,15 +11,18 @@ public final class SlipperHelper {
     private SlipperHelper() {}
 
     public static int getXp(ItemStack stack) {
+        if (stack == null) return 0;
         return stack.getOrDefault(DataComponents.REPAIR_COST, 0);
     }
 
     public static void setXp(ItemStack stack, int xp) {
+        if (stack == null) return;
         stack.set(DataComponents.REPAIR_COST, xp);
         LOGGER.info("Slipper XP set to {}", xp);
     }
 
     public static void addXp(ItemStack stack, int amount) {
+        if (stack == null) return;
         int old = getXp(stack);
         setXp(stack, old + amount);
         LOGGER.info("Slipper XP: {} -> {}", old, old + amount);

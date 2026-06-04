@@ -134,15 +134,19 @@ public class ThrownSlipper extends AbstractArrow {
             return;
         }
 
-        setNoPhysics(true);
-        Vec3 diff = target.getEyePosition().subtract(position());
-        double riseSpeed = 0.015;
-        double returnSpeed = 0.05;
-        setPosRaw(
-            getX() + diff.x * riseSpeed,
-            getY() + diff.y * riseSpeed,
-            getZ() + diff.z * riseSpeed
-        );
-        setDeltaMovement(getDeltaMovement().scale(0.95).add(diff.normalize().scale(returnSpeed)));
+        Vec3 velocity = getDeltaMovement();
+        velocity = velocity.add(0, 0.05, 0);
+
+        double speed = velocity.length();
+        if (speed < 1.5) {
+            speed = 1.5;
+        }
+
+        Vec3 toTarget = target.getEyePosition().subtract(position()).normalize();
+        Vec3 currentDir = velocity.normalize();
+        double steerStrength = 0.1;
+        Vec3 steeredDir = currentDir.add(toTarget.subtract(currentDir).scale(steerStrength)).normalize();
+
+        setDeltaMovement(steeredDir.scale(speed));
     }
 }
