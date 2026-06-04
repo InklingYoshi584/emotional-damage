@@ -20,5 +20,7 @@
   "death.attack.hitByLeaf": "%1$s was hit by LEAF",
   "death.attack.hitByLeaf.player": "%1$s was hit by LEAF",
   "death.attack.socialAnxiety": "%1$s has SOCIAL ANXIETY",
-  "death.attack.socialAnxiety.player": "%1$s has SOCIAL ANXIETY"
+  "death.attack.socialAnxiety.player": "%1$s has SOCIAL ANXIETY",
+  "death.attack.artDegree": "%1$s has an ART DEGREE",
+  "death.attack.artDegree.player": "%1$s has an ART DEGREE"
 }

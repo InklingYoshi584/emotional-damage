@@ -22,7 +22,9 @@
 		"PlayerAbilityMixin",
 		"ItemUseMixin",
 		"PlayerAttributeMixin",
-		"ItemPropertiesAccessor"
+		"ItemPropertiesAccessor",
+		"ArtDegreeMixin",
+		"BookSignMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
