@@ -26,5 +26,7 @@
   "death.attack.musician": "%1$s aspires to be a MUSICIAN(homeless)",
   "death.attack.musician.player": "%1$s aspires to be a MUSICIAN(homeless)",
   "death.attack.failureSkillIssue": "%1$s tried to use a totem of undying to hide their FAILURE SKILL ISSUE",
-  "death.attack.failureSkillIssue.player": "%1$s tried to use a totem of undying to hide their FAILURE SKILL ISSUE"
+  "death.attack.failureSkillIssue.player": "%1$s tried to use a totem of undying to hide their FAILURE SKILL ISSUE",
+  "death.attack.tooLazy": "%1$s was TOO LAZY TO MOVE",
+  "death.attack.tooLazy.player": "%1$s was TOO LAZY TO MOVE"
 }
