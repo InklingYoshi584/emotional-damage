@@ -27,6 +27,7 @@ public final class SlipperHelper {
 
     public static int getDamageForXp(int xp) {
         if (xp >= 1000) return 8;
+        if (xp >= 800) return 8;
         if (xp >= 600) return 7;
         if (xp >= 300) return 5;
         if (xp >= 200) return 4;
@@ -37,6 +38,10 @@ public final class SlipperHelper {
 
     public static boolean hasLoyalty(int xp) {
         return xp >= 600;
+    }
+
+    public static boolean hasHoming(int xp) {
+        return xp >= 800;
     }
 
     public static boolean canThrowItems(int xp) {

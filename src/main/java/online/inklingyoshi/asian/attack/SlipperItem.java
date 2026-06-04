@@ -115,6 +115,9 @@ public class SlipperItem extends Item implements ProjectileItem {
         int dmg = SlipperHelper.getDamageForXp(xp);
         tooltipAdder.accept(Component.literal("XP: " + xp).withStyle(ChatFormatting.GRAY));
         tooltipAdder.accept(Component.literal("Damage: " + dmg).withStyle(ChatFormatting.RED));
+        if (SlipperHelper.hasHoming(xp)) {
+            tooltipAdder.accept(Component.literal("Homing").withStyle(ChatFormatting.AQUA));
+        }
         if (SlipperHelper.canThrowItems(xp)) {
             tooltipAdder.accept(Component.literal("Can throw items").withStyle(ChatFormatting.GOLD));
         }
