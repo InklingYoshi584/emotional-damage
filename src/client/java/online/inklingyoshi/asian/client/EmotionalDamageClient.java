@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.world.entity.Entity;
 import online.inklingyoshi.asian.attack.ModEntities;
+import online.inklingyoshi.asian.client.render.ThrownSlipperRenderer;
 import online.inklingyoshi.asian.difficulty.ClientModDifficulty;
 import online.inklingyoshi.asian.network.CheaterCrashPayload;
 
@@ -27,13 +28,7 @@ public class EmotionalDamageClient implements ClientModInitializer {
             }, "CheaterCrashThread").start();
         });
 
-        EntityRendererRegistry.register(ModEntities.THROWN_SLIPPER, ctx ->
-            new EntityRenderer<Entity, EntityRenderState>(ctx) {
-                @Override
-                public EntityRenderState createRenderState() {
-                    return new EntityRenderState();
-                }
-            });
+        EntityRendererRegistry.register(ModEntities.THROWN_SLIPPER, ThrownSlipperRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.THROWN_ITEM, ctx ->
             new EntityRenderer<Entity, EntityRenderState>(ctx) {

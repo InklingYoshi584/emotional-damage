@@ -30,7 +30,9 @@
 		"TotemMixin",
 		"PlayerIdleMixin",
 		"ItemTaxMixin",
-		"CheaterMixin"
+		"CheaterMixin",
+		"PlayerLockedTargetMixin",
+		"SafeGuardMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

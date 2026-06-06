@@ -33,7 +33,7 @@ public class MerchantSafetyMixin implements IMerchantTradeTracker {
         if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) sp.level()).getServer())) return;
 
         if (!emotionalDamage$traded) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.SOCIAL_ANXIETY), Float.MAX_VALUE);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.SOCIAL_ANXIETY), 1.0E12f);
         }
     }
 
