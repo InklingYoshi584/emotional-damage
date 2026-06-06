@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 
 public class ThrownItemProjectile extends AbstractArrow {
 
-    private ItemStack carriedItem = ItemStack.EMPTY;
+    private ItemStack carriedItem;
 
     public ThrownItemProjectile(EntityType<? extends ThrownItemProjectile> type, Level level) {
         super(type, level);
@@ -26,7 +26,7 @@ public class ThrownItemProjectile extends AbstractArrow {
 
     @Override
     protected ItemStack getDefaultPickupItem() {
-        return carriedItem.copy();
+        return carriedItem != null ? carriedItem.copy() : ItemStack.EMPTY;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ThrownItemProjectile extends AbstractArrow {
     }
 
     private void dropItemAndDiscard() {
-        if (!carriedItem.isEmpty()) {
+        if (carriedItem != null && !carriedItem.isEmpty()) {
             ItemEntity itemEntity = new ItemEntity(level(), getX(), getY(), getZ(), carriedItem.copy());
             level().addFreshEntity(itemEntity);
             carriedItem = ItemStack.EMPTY;
