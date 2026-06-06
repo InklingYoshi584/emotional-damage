@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import online.inklingyoshi.asian.attack.ModEntities;
 import online.inklingyoshi.asian.attack.ModItems;
+import online.inklingyoshi.asian.attack.ModSounds;
 import online.inklingyoshi.asian.command.ModDifficultyCommand;
 import online.inklingyoshi.asian.difficulty.ModDifficultyNetworking;
 import online.inklingyoshi.asian.difficulty.PendingModDifficulty;
@@ -19,6 +20,7 @@ public class EmotionalDamage implements ModInitializer {
     public void onInitialize() {
         ModItems.register();
         ModEntities.register();
+        ModSounds.register();
 
         ModDifficultyNetworking.register();
         CheaterNetworking.registerServer();

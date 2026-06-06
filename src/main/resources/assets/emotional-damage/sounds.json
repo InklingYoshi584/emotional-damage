@@ -1,0 +1,58 @@
+{
+  "why_you_so_fat": {
+    "sounds": [
+      {
+        "name": "emotional-damage:why_you_so_fat",
+        "stream": true
+      }
+    ]
+  },
+  "minimum_wage": {
+    "sounds": [
+      {
+        "name": "emotional-damage:minimum_wage",
+        "stream": true
+      }
+    ]
+  },
+  "when_getting_job": {
+    "sounds": [
+      {
+        "name": "emotional-damage:when_getting_job",
+        "stream": true
+      }
+    ]
+  },
+  "you_so_skinny": {
+    "sounds": [
+      {
+        "name": "emotional-damage:you_so_skinny",
+        "stream": true
+      }
+    ]
+  },
+  "they_sent_you": {
+    "sounds": [
+      {
+        "name": "emotional-damage:they_sent_you",
+        "stream": true
+      }
+    ]
+  },
+  "stoopid_no_stone_tools": {
+    "sounds": [
+      {
+        "name": "emotional-damage:stoopid_no_stone_tools",
+        "stream": true
+      }
+    ]
+  },
+  "missed_full_charge": {
+    "sounds": [
+      {
+        "name": "emotional-damage:missed_full_charge",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -44,8 +44,8 @@ public final class MobInsults {
     private static void registerDefaultInsults() {
         register(new MobInsult(
             "Why you so fat?",
-            null,
-            0,
+            ModSounds.WHY_YOU_SO_FAT,
+            33,
             16f,
             (mob, player, serverLevel) -> {
                 if (player instanceof IPlayerFoodTracker tracker) {
@@ -60,8 +60,8 @@ public final class MobInsults {
 
         register(new MobInsult(
             "Smells like minimum wage",
-            null,
-            0,
+            ModSounds.MINIMUM_WAGE,
+            40,
             16f,
             (mob, player, serverLevel) -> {
                 if (player instanceof IPlayerStatsTracker tracker) {
@@ -77,8 +77,8 @@ public final class MobInsults {
 
         register(new MobInsult(
             "When you getting a job?",
-            null,
-            0,
+            ModSounds.WHEN_GETTING_JOB,
+            33,
             16f,
             (mob, player, serverLevel) -> {
                 if (player instanceof IPlayerStatsTracker tracker) {
@@ -92,8 +92,8 @@ public final class MobInsults {
 
         register(new MobInsult(
             "You so skinny.",
-            null,
-            0,
+            ModSounds.YOU_SO_SKINNY,
+            33,
             16f,
             (mob, player, serverLevel) -> {
                 int hunger = player.getFoodData().getFoodLevel();
@@ -105,8 +105,8 @@ public final class MobInsults {
 
         register(new MobInsult(
             "They sent you?",
-            null,
-            0,
+            ModSounds.THEY_SENT_YOU,
+            19,
             16f,
             (mob, player, serverLevel) -> player.getArrowCount() > 0,
             ModDamageTypes.EMOTIONAL_DAMAGE
@@ -114,8 +114,8 @@ public final class MobInsults {
 
         register(new MobInsult(
             "You so stoopid you don't have stone tools",
-            null,
-            0,
+            ModSounds.STOOPID_NO_STONE_TOOLS,
+            65,
             16f,
             (mob, player, serverLevel) -> {
                 if (serverLevel.getLevelData().getGameTime() < 24000) return false;
@@ -130,8 +130,8 @@ public final class MobInsults {
 
         registerExtendedOnly(new MobInsult(
             "Did you just not hit a full-charged attack?",
-            null,
-            0,
+            ModSounds.MISSED_FULL_CHARGE,
+            73,
             16f,
             (mob, player, serverLevel) -> {
                 if (player instanceof IPlayerStatsTracker tracker) {

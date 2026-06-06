@@ -60,13 +60,14 @@ public class ThrownSlipper extends AbstractArrow {
     private void markHit() {
         dealtDamage = true;
         ItemStack stack = getWeaponItem();
-        if (!stack.isEmpty()) {
-            int oldXp = SlipperHelper.getXp(stack);
-            SlipperHelper.addXp(stack, 1);
-            if (oldXp < 1000 && SlipperHelper.getXp(stack) >= 1000) {
-                if (getOwner() instanceof Player player) {
-                    PlayerAbilityTracker.setThrowUnlock(player, true);
-                }
+        if (stack == null || stack.isEmpty()) {
+            return;
+        }
+        int oldXp = SlipperHelper.getXp(stack);
+        SlipperHelper.addXp(stack, 1);
+        if (oldXp < 1000 && SlipperHelper.getXp(stack) >= 1000) {
+            if (getOwner() instanceof Player player) {
+                PlayerAbilityTracker.setThrowUnlock(player, true);
             }
         }
     }
