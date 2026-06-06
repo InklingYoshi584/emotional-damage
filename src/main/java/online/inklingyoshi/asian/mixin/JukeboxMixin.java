@@ -26,7 +26,7 @@ public class JukeboxMixin {
             InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
         if (!(player instanceof ServerPlayer sp)) return;
         if (stack.get(DataComponents.JUKEBOX_PLAYABLE) != null) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 10000.0f);
         }
     }
 }

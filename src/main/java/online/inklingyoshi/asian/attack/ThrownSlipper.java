@@ -117,7 +117,7 @@ public class ThrownSlipper extends AbstractArrow {
 
         Vec3 toTarget = target.getEyePosition().subtract(position()).normalize();
         Vec3 currentDir = velocity.normalize();
-        double steerStrength = 0.8;
+        double steerStrength = 0.95;
         Vec3 steeredDir = currentDir.add(toTarget.subtract(currentDir).scale(steerStrength)).normalize();
 
         setDeltaMovement(steeredDir.scale(speed));

@@ -32,7 +32,7 @@ public abstract class ArtDegreeMixin {
         Slot slot = getSlot(0);
         ItemStack stack = slot.getItem();
         if (stack.getItem() == Items.PAINTING) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.ART_DEGREE), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.ART_DEGREE), 10000.0f);
         }
     }
 }

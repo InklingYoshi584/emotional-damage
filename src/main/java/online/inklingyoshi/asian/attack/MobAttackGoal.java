@@ -124,7 +124,7 @@ public class MobAttackGoal extends Goal {
 
                     if (criteriaMet) {
                         DamageSource source = ModDamageTypes.source(serverLevel, mob, pendingInsult.damageType());
-                        player.hurt(source, 1.0E12f);
+                        player.hurt(source, 10000.0f);
                     } else {
                         DamageSource source = ModDamageTypes.source(serverLevel, mob, ModDamageTypes.EMOTIONAL_DAMAGE);
                         player.hurt(source, 4.0f);

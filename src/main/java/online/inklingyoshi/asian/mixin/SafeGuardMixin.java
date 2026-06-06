@@ -14,8 +14,11 @@ public class SafeGuardMixin {
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     private void fixBrokenHealth(ValueInput input, CallbackInfo ci) {
         Player self = (Player) (Object) this;
-        if (Float.isNaN(self.getHealth())) {
+        if (Float.isNaN(self.getHealth()) || Float.isInfinite(self.getHealth())) {
             self.setHealth(self.getMaxHealth());
+        }
+        if (Float.isNaN(self.getAbsorptionAmount()) || Float.isInfinite(self.getAbsorptionAmount())) {
+            self.setAbsorptionAmount(0);
         }
     }
 }

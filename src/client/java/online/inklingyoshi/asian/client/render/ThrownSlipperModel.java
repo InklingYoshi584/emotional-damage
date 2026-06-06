@@ -18,12 +18,28 @@ public class ThrownSlipperModel extends Model<Unit> {
 
     public static LayerDefinition createLayer() {
         MeshDefinition mesh = new MeshDefinition();
-        PartDefinition part = mesh.getRoot();
-        part.addOrReplaceChild("slipper",
+        PartDefinition root = mesh.getRoot();
+
+        PartPose origin = PartPose.offset(-8.0f, 0.0f, -8.0f);
+
+        root.addOrReplaceChild("sole",
             CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(-2.5f, -0.5f, -6.0f, 5.0f, 1.0f, 12.0f),
-            PartPose.ZERO);
+                .texOffs(6, 4)
+                .addBox(5.0f, 0.0f, 2.0f, 5.0f, 1.0f, 12.0f),
+            origin);
+
+        root.addOrReplaceChild("toe",
+            CubeListBuilder.create()
+                .texOffs(0, 5)
+                .addBox(5.0f, 1.0f, 4.0f, 5.0f, 1.0f, 3.0f),
+            origin);
+
+        root.addOrReplaceChild("heel",
+            CubeListBuilder.create()
+                .texOffs(0, 6)
+                .addBox(5.0f, 1.0f, 4.0f, 5.0f, 1.0f, 3.0f),
+            origin);
+
         return LayerDefinition.create(mesh, 16, 16);
     }
 }

@@ -35,7 +35,7 @@ public class TotemMixin {
         }
         emotionalDamage$totemTimer--;
         if (emotionalDamage$totemTimer == 0) {
-            sp.hurt(ModDamageTypes.simpleSource(sp.level(), ModDamageTypes.FAILURE_SKILL_ISSUE), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource(sp.level(), ModDamageTypes.FAILURE_SKILL_ISSUE), 10000.0f);
             emotionalDamage$totemTimer = -1;
         }
     }

@@ -32,7 +32,8 @@
 		"ItemTaxMixin",
 		"CheaterMixin",
 		"PlayerLockedTargetMixin",
-		"SafeGuardMixin"
+		"SafeGuardMixin",
+		"ItemThrowGameModeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

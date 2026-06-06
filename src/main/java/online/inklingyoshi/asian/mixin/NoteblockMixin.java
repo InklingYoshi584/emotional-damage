@@ -22,7 +22,7 @@ public class NoteblockMixin {
     @Inject(method = "attack", at = @At("HEAD"))
     private void onAttack(BlockState state, Level level, BlockPos pos, Player player, CallbackInfo ci) {
         if (player instanceof ServerPlayer sp) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 10000.0f);
         }
     }
 
@@ -30,7 +30,7 @@ public class NoteblockMixin {
     private void onUse(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit,
             CallbackInfoReturnable<InteractionResult> cir) {
         if (player instanceof ServerPlayer sp) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.MUSICIAN), 10000.0f);
         }
     }
 }

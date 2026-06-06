@@ -36,7 +36,7 @@ public class EnderDragonMixin {
 
         if (emotionalDamage$hasPerched && self.isAlive()) {
             for (ServerPlayer player : serverLevel.players()) {
-                player.hurt(ModDamageTypes.simpleSource(serverLevel, ModDamageTypes.SUCKS_AT_GAME), 1.0E12f);
+                player.hurt(ModDamageTypes.simpleSource(serverLevel, ModDamageTypes.SUCKS_AT_GAME), 10000.0f);
             }
             self.setHealth(self.getMaxHealth());
             net.minecraft.world.level.dimension.end.EnderDragonFight fight = self.getDragonFight();

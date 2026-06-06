@@ -20,7 +20,7 @@ public class BookSignMixin {
     private void onSignBook(net.minecraft.network.protocol.game.ServerboundEditBookPacket packet, CallbackInfo ci) {
         ServerPlayer sp = player;
         if (sp != null) {
-            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.ART_DEGREE), 1.0E12f);
+            sp.hurt(ModDamageTypes.simpleSource((ServerLevel) sp.level(), ModDamageTypes.ART_DEGREE), 10000.0f);
         }
     }
 }

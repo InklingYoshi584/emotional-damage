@@ -32,7 +32,7 @@ public class CheaterMixin {
 
         if (anyGameRuleModified || cheatsEnabled) {
             ci.cancel();
-            player.hurt(ModDamageTypes.simpleSource(player.level(), ModDamageTypes.CHEATER), 1.0E12f);
+            player.hurt(ModDamageTypes.simpleSource(player.level(), ModDamageTypes.CHEATER), 10000.0f);
             ServerPlayNetworking.send(player, new CheaterCrashPayload());
 
             String errorMsg = "You tried to beat the game as a CHEATER(FAILURE)";
