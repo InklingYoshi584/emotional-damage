@@ -21,6 +21,9 @@ public class ThrownItemProjectile extends AbstractArrow {
     private static final EntityDataAccessor<ItemStack> DATA_ITEM =
         SynchedEntityData.defineId(ThrownItemProjectile.class, EntityDataSerializers.ITEM_STACK);
 
+    private static final EntityDataAccessor<Boolean> HAS_TARGET =
+        SynchedEntityData.defineId(ThrownItemProjectile.class, EntityDataSerializers.BOOLEAN);
+
     private UUID lockedTarget;
 
     public ThrownItemProjectile(EntityType<? extends ThrownItemProjectile> type, Level level) {
@@ -36,6 +39,11 @@ public class ThrownItemProjectile extends AbstractArrow {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_ITEM, ItemStack.EMPTY);
+        builder.define(HAS_TARGET, false);
+    }
+
+    private void setHasTarget(boolean value) {
+        entityData.set(HAS_TARGET, value);
     }
 
     @Override
@@ -56,7 +64,9 @@ public class ThrownItemProjectile extends AbstractArrow {
 
     @Override
     public void tick() {
-        setNoGravity(lockedTarget != null);
+        if (!level().isClientSide()) {
+            setNoGravity(lockedTarget != null);
+        }
         super.tick();
         if (tickCount > 300) {
             dropItemAndDiscard();
@@ -74,6 +84,7 @@ public class ThrownItemProjectile extends AbstractArrow {
                     UUID playerTarget = tracker.emotionalDamage$getLockedTarget();
                     if (playerTarget != null && lockedTarget == null) {
                         lockedTarget = playerTarget;
+                        setHasTarget(true);
                     }
                 }
                 if (lockedTarget != null && level() instanceof ServerLevel serverLevel) {
@@ -82,6 +93,7 @@ public class ThrownItemProjectile extends AbstractArrow {
                         steerToward(living);
                     } else {
                         lockedTarget = null;
+                        setHasTarget(false);
                     }
                 }
             }

@@ -27,6 +27,8 @@ public class ItemThrowGameModeMixin {
         EmotionalDamage.LOGGER.info("ItemThrowGameModeMixin fired! hasUnlock={}", PlayerAbilityTracker.hasThrowUnlock(player));
         if (!PlayerAbilityTracker.hasThrowUnlock(player)) return;
 
+        EmotionalDamage.LOGGER.info("ItemThrowGameModeMixin: item={} throwable={}", stack, isThrowable(stack));
+
         EmotionalDamage.LOGGER.info("ItemThrowGameModeMixin: trying to throw {}, throwable={}", stack, isThrowable(stack));
         if (!isThrowable(stack)) return;
 

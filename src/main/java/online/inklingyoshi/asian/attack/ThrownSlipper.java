@@ -2,6 +2,9 @@ package online.inklingyoshi.asian.attack;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -14,9 +17,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import online.inklingyoshi.asian.EmotionalDamage;
 import java.util.UUID;
 
 public class ThrownSlipper extends AbstractArrow {
+
+    private static final EntityDataAccessor<Boolean> HAS_TARGET =
+        SynchedEntityData.defineId(ThrownSlipper.class, EntityDataSerializers.BOOLEAN);
 
     private boolean dealtDamage;
     private boolean loyaltyReturned;
@@ -39,6 +46,16 @@ public class ThrownSlipper extends AbstractArrow {
     @Override
     protected ItemStack getDefaultPickupItem() {
         return new ItemStack(ModItems.SLIPPER);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HAS_TARGET, false);
+    }
+
+    private void setHasTarget(boolean value) {
+        entityData.set(HAS_TARGET, value);
     }
 
     @Override
@@ -80,8 +97,13 @@ public class ThrownSlipper extends AbstractArrow {
 
     @Override
     public void tick() {
-        setNoGravity(lockedTarget != null);
+        if (!level().isClientSide()) {
+            setNoGravity(lockedTarget != null);
+        }
         super.tick();
+        if (tickCount % 20 == 0) {
+            EmotionalDamage.LOGGER.info("Slipper tick={} locked={} noGrav={} vel.y={}", tickCount, lockedTarget != null, isNoGravity(), getDeltaMovement().y);
+        }
         if (tickCount > 1200) {
             discard();
             return;
@@ -93,6 +115,7 @@ public class ThrownSlipper extends AbstractArrow {
                 UUID playerTarget = tracker.emotionalDamage$getLockedTarget();
                 if (playerTarget != null && lockedTarget == null) {
                     lockedTarget = playerTarget;
+                    setHasTarget(true);
                 }
             }
             if (lockedTarget != null && level() instanceof ServerLevel serverLevel) {
@@ -101,6 +124,7 @@ public class ThrownSlipper extends AbstractArrow {
                     steerToward(living);
                 } else {
                     lockedTarget = null;
+                    setHasTarget(false);
                 }
             }
         }
