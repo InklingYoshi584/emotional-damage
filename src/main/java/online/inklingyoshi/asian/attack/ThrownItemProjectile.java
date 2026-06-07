@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.level.ServerLevel;
 import java.util.UUID;
 
-public class ThrownItemProjectile extends AbstractArrow {
+public class ThrownItemProjectile extends AbstractArrow implements IHomingProjectile {
 
     private static final EntityDataAccessor<ItemStack> DATA_ITEM =
         SynchedEntityData.defineId(ThrownItemProjectile.class, EntityDataSerializers.ITEM_STACK);
@@ -87,11 +87,19 @@ public class ThrownItemProjectile extends AbstractArrow {
         }
     }
 
+    @Override
+    public boolean emotionalDamage$isHoming() {
+        return lockedTarget != null;
+    }
+
     private void steerToward(LivingEntity target) {
         Vec3 velocity = getDeltaMovement();
         double speed = velocity.length();
         if (speed < 0.8) {
             speed = 0.8;
+        }
+        if (speed > 1.25) {
+            speed = 1.25;
         }
 
         Vec3 toTarget = target.getEyePosition().subtract(position()).normalize();

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import java.util.UUID;
 
-public class ThrownSlipper extends AbstractArrow {
+public class ThrownSlipper extends AbstractArrow implements IHomingProjectile {
 
     private boolean dealtDamage;
     private boolean loyaltyReturned;
@@ -119,11 +119,19 @@ public class ThrownSlipper extends AbstractArrow {
         }
     }
 
+    @Override
+    public boolean emotionalDamage$isHoming() {
+        return lockedTarget != null;
+    }
+
     private void steerToward(LivingEntity target) {
         Vec3 velocity = getDeltaMovement();
         double speed = velocity.length();
         if (speed < 0.8) {
             speed = 0.8;
+        }
+        if (speed > 1.25) {
+            speed = 1.25;
         }
 
         Vec3 toTarget = target.getEyePosition().subtract(position()).normalize();
