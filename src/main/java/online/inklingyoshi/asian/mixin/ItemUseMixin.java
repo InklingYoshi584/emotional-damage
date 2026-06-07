@@ -50,7 +50,10 @@ public class ItemUseMixin {
     private static boolean isThrowable(ItemStack stack) {
         if (stack.isEmpty()) return false;
         if (stack.getItem() instanceof SlipperItem) return false;
-        if (stack.get(DataComponents.FOOD) != null) return false;
+        if (stack.has(DataComponents.FOOD)) return false;
+        if (stack.has(DataComponents.CONSUMABLE)) return false;
+        if (stack.has(DataComponents.EQUIPPABLE)) return false;
+        if (stack.has(DataComponents.KINETIC_WEAPON)) return false;
         return !(stack.getItem() instanceof BlockItem);
     }
 }

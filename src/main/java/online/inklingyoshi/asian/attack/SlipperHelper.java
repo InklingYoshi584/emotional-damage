@@ -44,10 +44,10 @@ public final class SlipperHelper {
     }
 
     public static boolean hasHoming(int xp) {
-        return xp >= 800;
+        return xp >= 1000;
     }
 
     public static boolean canThrowItems(int xp) {
-        return xp >= 1000;
+        return xp >= 800;
     }
 }

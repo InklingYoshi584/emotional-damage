@@ -20,6 +20,7 @@ public class ThrownSlipper extends AbstractArrow {
 
     private boolean dealtDamage;
     private boolean loyaltyReturned;
+    private UUID lockedTarget;
 
     public ThrownSlipper(EntityType<? extends ThrownSlipper> type, Level level) {
         super(type, level);
@@ -65,9 +66,14 @@ public class ThrownSlipper extends AbstractArrow {
         }
         int oldXp = SlipperHelper.getXp(stack);
         SlipperHelper.addXp(stack, 1);
-        if (oldXp < 1000 && SlipperHelper.getXp(stack) >= 1000) {
+        if (oldXp < 800 && SlipperHelper.getXp(stack) >= 800) {
             if (getOwner() instanceof Player player) {
                 PlayerAbilityTracker.setThrowUnlock(player, true);
+            }
+        }
+        if (oldXp < 1000 && SlipperHelper.getXp(stack) >= 1000) {
+            if (getOwner() instanceof Player player) {
+                PlayerAbilityTracker.setHomingUnlock(player, true);
             }
         }
     }
@@ -83,12 +89,17 @@ public class ThrownSlipper extends AbstractArrow {
         if (!dealtDamage && !isInGround() && SlipperHelper.hasHoming(SlipperHelper.getXp(getWeaponItem()))) {
             Entity owner = getOwner();
             if (owner instanceof IPlayerLockedTarget tracker) {
-                UUID targetId = tracker.emotionalDamage$getLockedTarget();
-                if (targetId != null && level() instanceof ServerLevel serverLevel) {
-                    Entity target = serverLevel.getEntity(targetId);
-                    if (target instanceof LivingEntity living && living.isAlive()) {
-                        steerToward(living);
-                    }
+                UUID playerTarget = tracker.emotionalDamage$getLockedTarget();
+                if (playerTarget != null && lockedTarget == null) {
+                    lockedTarget = playerTarget;
+                }
+            }
+            if (lockedTarget != null && level() instanceof ServerLevel serverLevel) {
+                Entity target = serverLevel.getEntity(lockedTarget);
+                if (target instanceof LivingEntity living && living.isAlive()) {
+                    steerToward(living);
+                } else {
+                    lockedTarget = null;
                 }
             }
         }
@@ -111,8 +122,8 @@ public class ThrownSlipper extends AbstractArrow {
     private void steerToward(LivingEntity target) {
         Vec3 velocity = getDeltaMovement();
         double speed = velocity.length();
-        if (speed < 1.0) {
-            speed = 1.0;
+        if (speed < 0.8) {
+            speed = 0.8;
         }
 
         Vec3 toTarget = target.getEyePosition().subtract(position()).normalize();

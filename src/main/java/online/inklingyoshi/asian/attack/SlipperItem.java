@@ -83,9 +83,14 @@ public class SlipperItem extends Item implements ProjectileItem {
 
     private void checkUnlock(ItemStack stack, LivingEntity attacker) {
         int xp = SlipperHelper.getXp(stack);
-        if (xp >= 1000 && xp - 1 < 1000) {
+        if (xp >= 800 && xp - 1 < 800) {
             if (attacker instanceof Player player) {
                 PlayerAbilityTracker.setThrowUnlock(player, true);
+            }
+        }
+        if (xp >= 1000 && xp - 1 < 1000) {
+            if (attacker instanceof Player player) {
+                PlayerAbilityTracker.setHomingUnlock(player, true);
             }
         }
     }
@@ -115,11 +120,11 @@ public class SlipperItem extends Item implements ProjectileItem {
         int dmg = SlipperHelper.getDamageForXp(xp);
         tooltipAdder.accept(Component.literal("XP: " + xp).withStyle(ChatFormatting.GRAY));
         tooltipAdder.accept(Component.literal("Damage: " + dmg).withStyle(ChatFormatting.RED));
-        if (SlipperHelper.hasHoming(xp)) {
-            tooltipAdder.accept(Component.literal("Homing").withStyle(ChatFormatting.AQUA));
-        }
         if (SlipperHelper.canThrowItems(xp)) {
             tooltipAdder.accept(Component.literal("Can throw items").withStyle(ChatFormatting.GOLD));
+        }
+        if (SlipperHelper.hasHoming(xp)) {
+            tooltipAdder.accept(Component.literal("Homing").withStyle(ChatFormatting.AQUA));
         }
     }
 }

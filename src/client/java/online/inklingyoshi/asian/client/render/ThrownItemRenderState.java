@@ -2,8 +2,6 @@ package online.inklingyoshi.asian.client.render;
 
 import net.minecraft.client.renderer.entity.state.ItemClusterRenderState;
 
-public class ThrownSlipperRenderState extends ItemClusterRenderState {
-    public float yRot;
-    public float xRot;
+public class ThrownItemRenderState extends ItemClusterRenderState {
     public float spinAngle;
 }

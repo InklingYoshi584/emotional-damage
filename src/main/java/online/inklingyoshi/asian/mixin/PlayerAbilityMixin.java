@@ -16,6 +16,9 @@ public abstract class PlayerAbilityMixin implements IPlayerAbilityTracker {
     @Unique
     private boolean emotionalDamage$throwUnlocked;
 
+    @Unique
+    private boolean emotionalDamage$homingUnlocked;
+
     @Override
     public boolean emotionalDamage$hasThrowUnlock() {
         return emotionalDamage$throwUnlocked;
@@ -26,15 +29,29 @@ public abstract class PlayerAbilityMixin implements IPlayerAbilityTracker {
         emotionalDamage$throwUnlocked = value;
     }
 
+    @Override
+    public boolean emotionalDamage$hasHomingUnlock() {
+        return emotionalDamage$homingUnlocked;
+    }
+
+    @Override
+    public void emotionalDamage$setHomingUnlock(boolean value) {
+        emotionalDamage$homingUnlocked = value;
+    }
+
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
-    private void readThrowUnlock(ValueInput input, CallbackInfo ci) {
+    private void readAbilities(ValueInput input, CallbackInfo ci) {
         emotionalDamage$throwUnlocked = input.getBooleanOr("emotional-damage:throwUnlocked", false);
+        emotionalDamage$homingUnlocked = input.getBooleanOr("emotional-damage:homingUnlocked", false);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
-    private void writeThrowUnlock(ValueOutput output, CallbackInfo ci) {
+    private void writeAbilities(ValueOutput output, CallbackInfo ci) {
         if (emotionalDamage$throwUnlocked) {
             output.putBoolean("emotional-damage:throwUnlocked", true);
+        }
+        if (emotionalDamage$homingUnlocked) {
+            output.putBoolean("emotional-damage:homingUnlocked", true);
         }
     }
 }

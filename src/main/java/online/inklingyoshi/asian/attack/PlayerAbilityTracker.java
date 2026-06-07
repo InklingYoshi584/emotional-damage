@@ -14,4 +14,14 @@ public final class PlayerAbilityTracker {
             tracker.emotionalDamage$setThrowUnlock(value);
         }
     }
+
+    public static boolean hasHomingUnlock(Player player) {
+        return player instanceof IPlayerAbilityTracker tracker && tracker.emotionalDamage$hasHomingUnlock();
+    }
+
+    public static void setHomingUnlock(Player player, boolean value) {
+        if (player instanceof IPlayerAbilityTracker tracker) {
+            tracker.emotionalDamage$setHomingUnlock(value);
+        }
+    }
 }
