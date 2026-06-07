@@ -33,8 +33,7 @@
 		"CheaterMixin",
 		"PlayerLockedTargetMixin",
 		"SafeGuardMixin",
-		"ItemThrowGameModeMixin",
-		"HomingGravityMixin"
+		"ItemThrowGameModeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

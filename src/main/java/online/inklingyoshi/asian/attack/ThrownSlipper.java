@@ -16,7 +16,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import java.util.UUID;
 
-public class ThrownSlipper extends AbstractArrow implements IHomingProjectile {
+public class ThrownSlipper extends AbstractArrow {
 
     private boolean dealtDamage;
     private boolean loyaltyReturned;
@@ -80,6 +80,7 @@ public class ThrownSlipper extends AbstractArrow implements IHomingProjectile {
 
     @Override
     public void tick() {
+        setNoGravity(lockedTarget != null);
         super.tick();
         if (tickCount > 1200) {
             discard();
@@ -117,11 +118,6 @@ public class ThrownSlipper extends AbstractArrow implements IHomingProjectile {
             }
             discard();
         }
-    }
-
-    @Override
-    public boolean emotionalDamage$isHoming() {
-        return lockedTarget != null;
     }
 
     private void steerToward(LivingEntity target) {

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.level.ServerLevel;
 import java.util.UUID;
 
-public class ThrownItemProjectile extends AbstractArrow implements IHomingProjectile {
+public class ThrownItemProjectile extends AbstractArrow {
 
     private static final EntityDataAccessor<ItemStack> DATA_ITEM =
         SynchedEntityData.defineId(ThrownItemProjectile.class, EntityDataSerializers.ITEM_STACK);
@@ -56,6 +56,7 @@ public class ThrownItemProjectile extends AbstractArrow implements IHomingProjec
 
     @Override
     public void tick() {
+        setNoGravity(lockedTarget != null);
         super.tick();
         if (tickCount > 300) {
             dropItemAndDiscard();
@@ -85,11 +86,6 @@ public class ThrownItemProjectile extends AbstractArrow implements IHomingProjec
                 }
             }
         }
-    }
-
-    @Override
-    public boolean emotionalDamage$isHoming() {
-        return lockedTarget != null;
     }
 
     private void steerToward(LivingEntity target) {
