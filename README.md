@@ -34,4 +34,4 @@ Output JAR: `build/libs/emotional-damage-1.0.0.jar`
 
 ## License
 
-CC0 1.0 Universal — see LICENSE.
+GNU General Public License v3.0 — see LICENSE.
