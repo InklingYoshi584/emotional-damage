@@ -5,7 +5,8 @@
 	"client": [
 		"ExampleClientMixin",
 		"DifficultyButtonsMixin",
-		"CreateWorldScreenGameTabMixin"
+		"CreateWorldScreenGameTabMixin",
+		"GunKeyboardMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

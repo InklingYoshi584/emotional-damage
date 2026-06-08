@@ -1,5 +1,6 @@
 {
   "item.emotional-damage.slipper": "Slipper",
+  "item.emotional-damage.gun": "Gun",
   "death.attack.emotionalDamage": "%1$s got EMOTIONAL DAMAGE",
   "death.attack.emotionalDamage.player": "%1$s got EMOTIONAL DAMAGE",
   "death.attack.tooFat": "%1$s was TOO FAT",
@@ -31,5 +32,15 @@
   "death.attack.tooLazy": "%1$s was TOO LAZY TO MOVE",
   "death.attack.tooLazy.player": "%1$s was TOO LAZY TO MOVE",
   "death.attack.cheater": "%1$s tried to beat the game as a CHEATER(FAILURE)",
-  "death.attack.cheater.player": "%1$s tried to beat the game as a CHEATER(FAILURE)"
+  "death.attack.cheater.player": "%1$s tried to beat the game as a CHEATER(FAILURE)",
+  "death.attack.tooSlow": "%1$s is too slow",
+  "death.attack.tooSlow.player": "%1$s is too slow",
+  "death.attack.stoobid": "%1$s was STOOBID",
+  "death.attack.stoobid.player": "%1$s was STOOBID",
+  "death.attack.cousinDidBetter": "%1$s's cousin did better",
+  "death.attack.cousinDidBetter.player": "%1$s's cousin did better",
+  "death.attack.disappointment": "%1$s was a DISAPPOINTMENT",
+  "death.attack.disappointment.player": "%1$s was a DISAPPOINTMENT",
+  "death.attack.forgotAsian": "%1$s forgot they're Asian",
+  "death.attack.forgotAsian.player": "%1$s forgot they're Asian"
 }

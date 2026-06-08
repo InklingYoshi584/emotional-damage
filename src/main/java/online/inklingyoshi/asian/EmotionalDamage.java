@@ -9,6 +9,7 @@ import online.inklingyoshi.asian.command.ModDifficultyCommand;
 import online.inklingyoshi.asian.difficulty.ModDifficultyNetworking;
 import online.inklingyoshi.asian.difficulty.PendingModDifficulty;
 import online.inklingyoshi.asian.network.CheaterNetworking;
+import online.inklingyoshi.asian.network.GunPackets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,7 @@ public class EmotionalDamage implements ModInitializer {
 
         ModDifficultyNetworking.register();
         CheaterNetworking.registerServer();
+        GunPackets.register();
         PendingModDifficulty.registerServerStartHandler();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {

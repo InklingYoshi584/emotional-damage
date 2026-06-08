@@ -33,7 +33,8 @@
 		"CheaterMixin",
 		"PlayerLockedTargetMixin",
 		"SafeGuardMixin",
-		"ItemThrowGameModeMixin"
+		"ItemThrowGameModeMixin",
+		"ServerGunMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import online.inklingyoshi.asian.EmotionalDamage;
 import online.inklingyoshi.asian.attack.ModEntities;
+import online.inklingyoshi.asian.attack.GunItem;
 import online.inklingyoshi.asian.attack.PlayerAbilityTracker;
 import online.inklingyoshi.asian.attack.SlipperItem;
 import online.inklingyoshi.asian.attack.ThrownItemProjectile;
@@ -50,6 +51,7 @@ public class ItemUseMixin {
     private static boolean isThrowable(ItemStack stack) {
         if (stack.isEmpty()) return false;
         if (stack.getItem() instanceof SlipperItem) return false;
+        if (stack.getItem() instanceof GunItem) return false;
         if (stack.has(DataComponents.FOOD)) return false;
         if (stack.has(DataComponents.CONSUMABLE)) return false;
         if (stack.has(DataComponents.EQUIPPABLE)) return false;

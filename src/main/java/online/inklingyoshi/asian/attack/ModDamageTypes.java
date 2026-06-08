@@ -32,6 +32,11 @@ public final class ModDamageTypes {
     public static final ResourceKey<DamageType> FAILURE_SKILL_ISSUE = key("failure_skill_issue");
     public static final ResourceKey<DamageType> TOO_LAZY = key("too_lazy");
     public static final ResourceKey<DamageType> CHEATER = key("cheater");
+    public static final ResourceKey<DamageType> TOO_SLOW = key("too_slow");
+    public static final ResourceKey<DamageType> STOOBID = key("stoobid");
+    public static final ResourceKey<DamageType> COUSIN_DID_BETTER = key("cousin_did_better");
+    public static final ResourceKey<DamageType> DISAPPOINTMENT = key("disappointment");
+    public static final ResourceKey<DamageType> FORGOT_ASIAN = key("forgot_asian");
 
     private static ResourceKey<DamageType> key(String name) {
         return ResourceKey.create(
