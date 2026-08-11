@@ -33,7 +33,8 @@ public class PlayerGrassLeafMixin {
 
         if (isHarmfulGrass(feetBlock)) {
             if (player.getRandom().nextInt(100) == 0) {
-                player.hurt(ModDamageTypes.simpleSource(level, ModDamageTypes.POISON_GRASS), 4.0f);
+                player.hurt(ModDamageTypes.simpleSource(level, ModDamageTypes.POISON_GRASS),
+                    DifficultyHelper.modDamage(level.getServer(), 4.0f));
             }
         }
 
@@ -41,7 +42,8 @@ public class PlayerGrassLeafMixin {
             BlockState aboveState = level.getBlockState(feetPos.above(y));
             if (aboveState.is(BlockTags.LEAVES)) {
                 if (player.getRandom().nextInt(100) == 0) {
-                    player.hurt(ModDamageTypes.simpleSource(level, ModDamageTypes.HIT_BY_LEAF), 4.0f);
+                    player.hurt(ModDamageTypes.simpleSource(level, ModDamageTypes.HIT_BY_LEAF),
+                        DifficultyHelper.modDamage(level.getServer(), 4.0f));
                 }
                 break;
             }

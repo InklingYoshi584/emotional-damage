@@ -31,16 +31,11 @@ public class PlayerAttributeMixin {
     }
 
     private void applyAttributes(ServerPlayer player, ModDifficulty diff) {
-        double maxHealth = diff == ModDifficulty.ASIAN_UPPER ? 1 : 20;
         double safeFall = diff == ModDifficulty.ASIAN_UPPER ? 0 : 3;
         double fallMult = diff == ModDifficulty.ASIAN_UPPER ? 100 : 1;
 
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxHealth);
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
         player.getAttribute(Attributes.SAFE_FALL_DISTANCE).setBaseValue(safeFall);
         player.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).setBaseValue(fallMult);
-
-        if (maxHealth < player.getMaxHealth()) {
-            player.setHealth((float) maxHealth);
-        }
     }
 }

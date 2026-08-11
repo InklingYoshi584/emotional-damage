@@ -127,7 +127,7 @@ public class MobAttackGoal extends Goal {
                         player.hurt(source, 10000.0f);
                     } else {
                         DamageSource source = ModDamageTypes.source(serverLevel, mob, ModDamageTypes.EMOTIONAL_DAMAGE);
-                        player.hurt(source, 4.0f);
+                        player.hurt(source, DifficultyHelper.modDamage(serverLevel.getServer(), 4.0f));
 
                         if (diff == ModDifficulty.ASIAN_UPPER && player.isAlive() && player.isBlocking()) {
                             ItemStack shield = player.getItemBlockingWith();

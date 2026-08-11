@@ -56,6 +56,7 @@ public class PlayerCollisionMixin {
             }
         }
 
-        player.hurt(ModDamageTypes.blockSource(level, player, state.getBlock()), 4.0f);
+        player.hurt(ModDamageTypes.blockSource(level, player, state.getBlock()),
+            DifficultyHelper.modDamage(level.getServer(), 4.0f));
     }
 }

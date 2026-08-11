@@ -54,7 +54,7 @@ public class PlayerIdleMixin {
         if (emotionalDamage$stationaryTicks > GRACE_TICKS && emotionalDamage$stationaryTicks % DAMAGE_INTERVAL == 0) {
             player.hurt(
                 ModDamageTypes.simpleSource(player.level(), ModDamageTypes.TOO_LAZY),
-                DAMAGE_AMOUNT
+                DifficultyHelper.modDamage(((ServerLevel) player.level()).getServer(), DAMAGE_AMOUNT)
             );
         }
     }

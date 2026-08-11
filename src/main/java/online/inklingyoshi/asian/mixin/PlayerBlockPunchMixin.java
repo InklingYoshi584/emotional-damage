@@ -35,6 +35,7 @@ public class PlayerBlockPunchMixin {
 
         ServerLevel level = (ServerLevel) player.level();
         BlockState state = level.getBlockState(pos);
-        player.hurt(ModDamageTypes.blockSource(level, player, state.getBlock()), 4.0f);
+        player.hurt(ModDamageTypes.blockSource(level, player, state.getBlock()),
+            DifficultyHelper.modDamage(level.getServer(), 4.0f));
     }
 }
