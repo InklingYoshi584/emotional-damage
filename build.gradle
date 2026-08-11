@@ -17,6 +17,10 @@ repositories {
 loom {
 	splitEnvironmentSourceSets()
 
+	runConfigs.client {
+		programArgs "--username", "InklingYoshi584"
+	}
+
 	mods {
 		"emotional-damage" {
 			sourceSet sourceSets.main
