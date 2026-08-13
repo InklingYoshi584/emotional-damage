@@ -27,6 +27,7 @@
 		"BookSignMixin",
 		"NoteblockMixin",
 		"JukeboxMixin",
+		"RecipeBookMixin",
 		"TotemMixin",
 		"PlayerIdleMixin",
 		"ItemTaxMixin",
@@ -34,7 +35,9 @@
 		"PlayerLockedTargetMixin",
 		"SafeGuardMixin",
 		"ItemThrowGameModeMixin",
-		"ServerGunMixin"
+		"ServerGunMixin",
+		"DelayedKillMixin",
+		"FoodPoisonMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
