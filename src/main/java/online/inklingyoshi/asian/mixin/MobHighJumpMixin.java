@@ -28,6 +28,12 @@ public class MobHighJumpMixin {
     @Unique
     private int emotionalDamage$fallImmunityTicks;
 
+    @Unique
+    private double emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
+
+    @Unique
+    private int emotionalDamage$noProgressTicks;
+
     @Inject(method = "tick", at = @At("HEAD"))
     private void tryHighJump(CallbackInfo ci) {
         LivingEntity self = (LivingEntity) (Object) this;
@@ -42,20 +48,33 @@ public class MobHighJumpMixin {
         if (!self.onGround()) return;
         if (emotionalDamage$jumpCooldown > 0) return;
 
-        boolean unreachable = mob.getNavigation().isStuck()
-            || (mob.getNavigation().getPath() == null && !mob.getNavigation().isInProgress());
-        if (!unreachable) return;
-
         double height = player.getY() - self.getY();
-        if (height <= MIN_JUMP_HEIGHT) return;
+        if (height <= MIN_JUMP_HEIGHT) {
+            emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
+            emotionalDamage$noProgressTicks = 0;
+            return;
+        }
+
+        double dx = player.getX() - self.getX();
+        double dz = player.getZ() - self.getZ();
+        double horiz = Math.sqrt(dx * dx + dz * dz);
+
+        if (horiz < emotionalDamage$lastTargetDistance - 0.1) {
+            emotionalDamage$lastTargetDistance = horiz;
+            emotionalDamage$noProgressTicks = 0;
+        } else {
+            emotionalDamage$noProgressTicks++;
+        }
+
+        boolean unreachable = mob.getNavigation().isStuck()
+            || (mob.getNavigation().getPath() == null && !mob.getNavigation().isInProgress())
+            || emotionalDamage$noProgressTicks >= 30;
+        if (!unreachable) return;
 
         double capped = Math.min(height, MAX_JUMP_HEIGHT);
         double vy = Math.sqrt(2.0 * GRAVITY * capped);
 
         Vec3 motion = self.getDeltaMovement();
-        double dx = player.getX() - self.getX();
-        double dz = player.getZ() - self.getZ();
-        double horiz = Math.sqrt(dx * dx + dz * dz);
         double push = 0.15;
         double mx = horiz > 0 ? dx / horiz * push : 0.0;
         double mz = horiz > 0 ? dz / horiz * push : 0.0;
@@ -63,6 +82,8 @@ public class MobHighJumpMixin {
         mob.setDeltaMovement(motion.add(mx, vy, mz));
         emotionalDamage$jumpCooldown = JUMP_COOLDOWN;
         emotionalDamage$fallImmunityTicks = (int) Math.ceil(2.0 * vy / GRAVITY) + 5;
+        emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
+        emotionalDamage$noProgressTicks = 0;
     }
 
     @Inject(method = "causeFallDamage", at = @At("HEAD"), cancellable = true)
