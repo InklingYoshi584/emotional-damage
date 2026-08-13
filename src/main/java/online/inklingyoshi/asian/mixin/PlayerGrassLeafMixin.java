@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -35,6 +37,7 @@ public class PlayerGrassLeafMixin {
             if (player.getRandom().nextInt(100) == 0) {
                 player.hurt(ModDamageTypes.simpleSource(level, ModDamageTypes.POISON_GRASS),
                     DifficultyHelper.modDamage(level.getServer(), 4.0f));
+                player.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0));
             }
         }
 
