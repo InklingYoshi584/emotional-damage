@@ -42,5 +42,9 @@
   "death.attack.disappointment": "%1$s was a DISAPPOINTMENT",
   "death.attack.disappointment.player": "%1$s was a DISAPPOINTMENT",
   "death.attack.forgotAsian": "%1$s forgot they're Asian",
-  "death.attack.forgotAsian.player": "%1$s forgot they're Asian"
+  "death.attack.forgotAsian.player": "%1$s forgot they're Asian",
+  "death.attack.lactoseIntolerance": "%1$s died from lactose intolerance",
+  "death.attack.lactoseIntolerance.player": "%1$s died from lactose intolerance",
+  "death.attack.parasites": "%1$s died from parasites in raw meat",
+  "death.attack.parasites.player": "%1$s died from parasites in raw meat"
 }

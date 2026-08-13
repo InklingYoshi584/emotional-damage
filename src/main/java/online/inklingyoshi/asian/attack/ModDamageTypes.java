@@ -37,6 +37,8 @@ public final class ModDamageTypes {
     public static final ResourceKey<DamageType> COUSIN_DID_BETTER = key("cousin_did_better");
     public static final ResourceKey<DamageType> DISAPPOINTMENT = key("disappointment");
     public static final ResourceKey<DamageType> FORGOT_ASIAN = key("forgot_asian");
+    public static final ResourceKey<DamageType> LACTOSE_INTOLERANCE = key("lactose_intolerance");
+    public static final ResourceKey<DamageType> PARASITES = key("parasites");
 
     private static ResourceKey<DamageType> key(String name) {
         return ResourceKey.create(
