@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
 import online.inklingyoshi.asian.util.DifficultyHelper;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +29,7 @@ public class PlayerBlockPunchMixin {
         if (action != net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action.START_DESTROY_BLOCK) {
             return;
         }
-        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) player.level()).getServer())) return;
+        if (!ModGameRules.enabled(((ServerLevel) player.level()).getServer(), ModGameRules.BLOCK_DAMAGE)) return;
 
         ItemStack mainHand = player.getMainHandItem();
         if (!mainHand.isEmpty()) return;

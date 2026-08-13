@@ -72,7 +72,8 @@ public class ServerGunMixin implements IGunPlayer {
         ServerPlayer self = (ServerPlayer) (Object) this;
         gunTimer++;
 
-        if (gunTimer > 20) {
+        int threshold = gunState == GunChallengeState.BUTTON ? 20 : 60;
+        if (gunTimer > threshold) {
             killAndReset(self);
         }
     }

@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
 import online.inklingyoshi.asian.util.DifficultyHelper;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,7 +27,7 @@ public class PlayerCollisionMixin {
         Player self = (Player) (Object) this;
         if (!(self instanceof ServerPlayer player)) return;
 
-        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) player.level()).getServer())) return;
+        if (!ModGameRules.enabled(((ServerLevel) player.level()).getServer(), ModGameRules.BLOCK_DAMAGE)) return;
 
         boolean colliding = player.horizontalCollision;
         if (!colliding || emotionalDamage$wasColliding) {

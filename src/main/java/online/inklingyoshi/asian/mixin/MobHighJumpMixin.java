@@ -5,8 +5,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import net.minecraft.world.phys.Vec3;
-import online.inklingyoshi.asian.util.DifficultyHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,8 +33,7 @@ public class MobHighJumpMixin {
         LivingEntity self = (LivingEntity) (Object) this;
         if (!(self instanceof Mob mob)) return;
         if (self.level().isClientSide()) return;
-        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) self.level()).getServer())) return;
-
+        if (!ModGameRules.enabled(((ServerLevel) self.level()).getServer(), ModGameRules.HIGH_JUMP)) return;
         if (emotionalDamage$jumpCooldown > 0) emotionalDamage$jumpCooldown--;
         if (emotionalDamage$fallImmunityTicks > 0) emotionalDamage$fallImmunityTicks--;
 

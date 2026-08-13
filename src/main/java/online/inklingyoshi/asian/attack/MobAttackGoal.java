@@ -3,6 +3,7 @@ package online.inklingyoshi.asian.attack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -45,9 +46,7 @@ public class MobAttackGoal extends Goal {
             return false;
         }
 
-        if (!DifficultyHelper.isAsianOrHigher(serverLevel.getServer())) {
-            return false;
-        }
+        if (!ModGameRules.enabled(serverLevel.getServer(), ModGameRules.INSULTS)) return false;
 
         double maxRangeSq = MobInsults.MAX_RANGE * MobInsults.MAX_RANGE;
         boolean anyoneNearby = false;

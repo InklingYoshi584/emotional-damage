@@ -7,6 +7,7 @@ import net.minecraft.world.entity.boss.enderdragon.phases.AbstractDragonSittingP
 import net.minecraft.world.entity.boss.enderdragon.phases.DragonPhaseInstance;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
 import online.inklingyoshi.asian.difficulty.ModDifficulty;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import online.inklingyoshi.asian.util.DifficultyHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,7 +27,7 @@ public class EnderDragonMixin {
         if (!(self.level() instanceof ServerLevel serverLevel)) return;
 
         if (DifficultyHelper.getModDifficulty(serverLevel.getServer()) != ModDifficulty.ASIAN_UPPER) return;
-
+        if (!serverLevel.getServer().getGameRules().get(ModGameRules.DRAGON_REVENGE)) return;
         DragonPhaseInstance currentPhase = self.getPhaseManager().getCurrentPhase();
 
         if (currentPhase instanceof AbstractDragonSittingPhase) {

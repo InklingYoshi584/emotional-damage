@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import online.inklingyoshi.asian.util.DifficultyHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,8 +25,7 @@ public class PlayerGrassLeafMixin {
     private void checkGrassAndLeafDamage(CallbackInfo ci) {
         Player self = (Player) (Object) this;
         if (!(self instanceof ServerPlayer player)) return;
-
-        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) player.level()).getServer())) return;
+        if (!ModGameRules.enabled(((ServerLevel) player.level()).getServer(), ModGameRules.POISON_GRASS)) return;
 
         ServerLevel level = (ServerLevel) player.level();
 

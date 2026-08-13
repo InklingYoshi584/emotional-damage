@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import online.inklingyoshi.asian.attack.ModDamageTypes;
 import online.inklingyoshi.asian.util.DifficultyHelper;
+import online.inklingyoshi.asian.gamerule.ModGameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,7 +36,7 @@ public class PlayerIdleMixin {
         Player self = (Player) (Object) this;
         if (!(self instanceof ServerPlayer player)) return;
 
-        if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) player.level()).getServer())) return;
+        if (!ModGameRules.enabled(((ServerLevel) player.level()).getServer(), ModGameRules.IDLE_DAMAGE)) return;
 
         double x = player.getX();
         double y = player.getY();
