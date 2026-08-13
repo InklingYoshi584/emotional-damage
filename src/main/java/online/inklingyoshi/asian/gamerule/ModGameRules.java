@@ -11,15 +11,15 @@ import online.inklingyoshi.asian.util.DifficultyHelper;
 public final class ModGameRules {
     private ModGameRules() {}
 
-    public static final GameRule<Boolean> HIGH_JUMP = rule(GameRuleCategory.MOBS, "highJump", true);
+    public static final GameRule<Boolean> HIGH_JUMP = rule(GameRuleCategory.MOBS, "high_jump", true);
     public static final GameRule<Boolean> INSULTS = rule(GameRuleCategory.MOBS, "insults", true);
-    public static final GameRule<Boolean> ITEM_TAX = rule(GameRuleCategory.PLAYER, "itemTax", true);
-    public static final GameRule<Boolean> SOCIAL_ANXIETY = rule(GameRuleCategory.MOBS, "socialAnxiety", true);
-    public static final GameRule<Boolean> PHANTOM_SPAWNER = rule(GameRuleCategory.SPAWNING, "phantomSpawner", true);
-    public static final GameRule<Boolean> POISON_GRASS = rule(GameRuleCategory.PLAYER, "poisonGrass", true);
-    public static final GameRule<Boolean> BLOCK_DAMAGE = rule(GameRuleCategory.PLAYER, "blockDamage", true);
-    public static final GameRule<Boolean> IDLE_DAMAGE = rule(GameRuleCategory.PLAYER, "idleDamage", true);
-    public static final GameRule<Boolean> DRAGON_REVENGE = rule(GameRuleCategory.MOBS, "dragonRevenge", true);
+    public static final GameRule<Boolean> ITEM_TAX = rule(GameRuleCategory.PLAYER, "item_tax", true);
+    public static final GameRule<Boolean> SOCIAL_ANXIETY = rule(GameRuleCategory.MOBS, "social_anxiety", true);
+    public static final GameRule<Boolean> PHANTOM_SPAWNER = rule(GameRuleCategory.SPAWNING, "phantom_spawner", true);
+    public static final GameRule<Boolean> POISON_GRASS = rule(GameRuleCategory.PLAYER, "poison_grass", true);
+    public static final GameRule<Boolean> BLOCK_DAMAGE = rule(GameRuleCategory.PLAYER, "block_damage", true);
+    public static final GameRule<Boolean> IDLE_DAMAGE = rule(GameRuleCategory.PLAYER, "idle_damage", true);
+    public static final GameRule<Boolean> DRAGON_REVENGE = rule(GameRuleCategory.MOBS, "dragon_revenge", true);
 
     private static GameRule<Boolean> rule(GameRuleCategory category, String name, boolean defaultValue) {
         return GameRuleBuilder.forBoolean(defaultValue)

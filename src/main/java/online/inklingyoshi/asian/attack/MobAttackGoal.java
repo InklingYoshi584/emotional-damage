@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -47,6 +48,8 @@ public class MobAttackGoal extends Goal {
         }
 
         if (!ModGameRules.enabled(serverLevel.getServer(), ModGameRules.INSULTS)) return false;
+        if (!(mob instanceof Enemy) && !(mob.getTarget() instanceof Player)) return false;
+
 
         double maxRangeSq = MobInsults.MAX_RANGE * MobInsults.MAX_RANGE;
         boolean anyoneNearby = false;
