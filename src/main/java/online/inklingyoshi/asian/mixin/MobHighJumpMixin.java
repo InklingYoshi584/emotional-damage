@@ -2,7 +2,6 @@ package online.inklingyoshi.asian.mixin;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +32,6 @@ public class MobHighJumpMixin {
     private void tryHighJump(CallbackInfo ci) {
         LivingEntity self = (LivingEntity) (Object) this;
         if (!(self instanceof Mob mob)) return;
-        if (!(mob instanceof Enemy)) return;
         if (self.level().isClientSide()) return;
         if (!DifficultyHelper.isAsianOrHigher(((ServerLevel) self.level()).getServer())) return;
 
