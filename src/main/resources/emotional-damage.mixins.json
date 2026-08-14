@@ -6,6 +6,8 @@
 		"ExampleMixin",
 		"DifficultyPacketMixin",
 		"MobAttackMixin",
+		"AsianSpawnBuffsMixin",
+		"CreeperPoweredAccessor",
 		"MobHighJumpMixin",
 		"CreeperInstaBoomMixin",
 		"PlayerFoodTrackerMixin",
