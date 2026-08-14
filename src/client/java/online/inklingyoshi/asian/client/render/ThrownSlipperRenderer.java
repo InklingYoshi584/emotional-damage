@@ -35,7 +35,9 @@ public class ThrownSlipperRenderer extends EntityRenderer<ThrownSlipper, ThrownS
         double hSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         state.yRot = (float) Math.toDegrees(Math.atan2(-velocity.x, velocity.z));
         state.xRot = (float) Math.toDegrees(Math.atan2(velocity.y, hSpeed));
-        state.spinAngle = (entity.tickCount + partialTicks) * 30.0f;
+        state.spinAngle = entity.isStuckInGround()
+            ? entity.getStuckSpinAngle()
+            : (entity.tickCount + partialTicks) * 30.0f;
     }
 
     @Override

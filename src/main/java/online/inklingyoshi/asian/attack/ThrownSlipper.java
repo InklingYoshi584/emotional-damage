@@ -29,6 +29,9 @@ public class ThrownSlipper extends AbstractArrow {
     private boolean loyaltyReturned;
     private UUID lockedTarget;
 
+    private boolean spinFrozen;
+    private float stuckSpinAngle;
+
     public ThrownSlipper(EntityType<? extends ThrownSlipper> type, Level level) {
         super(type, level);
     }
@@ -101,6 +104,12 @@ public class ThrownSlipper extends AbstractArrow {
             setNoGravity(lockedTarget != null);
         }
         super.tick();
+
+        if (isInGround() && !spinFrozen) {
+            spinFrozen = true;
+            stuckSpinAngle = tickCount * 30.0f;
+        }
+
         if (tickCount % 20 == 0) {
             EmotionalDamage.LOGGER.info("Slipper tick={} locked={} noGrav={} vel.y={}", tickCount, lockedTarget != null, isNoGravity(), getDeltaMovement().y);
         }
@@ -142,6 +151,14 @@ public class ThrownSlipper extends AbstractArrow {
             }
             discard();
         }
+    }
+
+    public float getStuckSpinAngle() {
+        return stuckSpinAngle;
+    }
+
+    public boolean isStuckInGround() {
+        return isInGround();
     }
 
     private void steerToward(LivingEntity target) {
