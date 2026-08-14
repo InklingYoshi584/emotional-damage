@@ -12,13 +12,24 @@ public final class GunHudElement implements HudElement {
     public void extractRenderState(GuiGraphicsExtractor extractor, DeltaTracker deltaTracker) {
         if (!ClientGunTracker.isActive) return;
 
-        ClientGunTracker.timerFraction += deltaTracker.getGameTimeDeltaTicks() / 20.0f;
-        if (ClientGunTracker.timerFraction > 1.0f) {
+        Minecraft client = Minecraft.getInstance();
+        if (client.player == null || !client.player.isAlive()) {
             ClientGunTracker.clear();
             return;
         }
 
-        Minecraft client = Minecraft.getInstance();
+        if (ClientGunTracker.isActive) {
+            // Mirror server timeouts: 20 ticks per button, 60 for the action prompt.
+            // Client-side failsafe so creative/invulnerable players can't get softlocked
+            // (server kill is a no-op there and never resets the tracker).
+            ClientGunTracker.timerFraction += deltaTracker.getGameTimeDeltaTicks()
+                / (ClientGunTracker.inAction ? 60.0f : 20.0f);
+            if (ClientGunTracker.timerFraction > 1.0f) {
+                ClientGunTracker.clear();
+                return;
+            }
+        }
+
         int screenW = extractor.guiWidth();
         int screenH = extractor.guiHeight();
 
@@ -33,16 +44,5 @@ public final class GunHudElement implements HudElement {
             extractor.centeredText(font, String.valueOf(ClientGunTracker.buttonChar),
                 centerX, screenH / 2 - 40, 0xFFFFFFFF);
         }
-
-        int barW = screenW - 60;
-        int barH = 6;
-        int barX = 30;
-        int barY = screenH / 2 + 30;
-        extractor.fill(barX, barY, barX + barW, barY + barH, 0xFF333333);
-
-        float frac = Math.min(ClientGunTracker.timerFraction, 1.0f);
-        int fillW = (int) (barW * frac);
-        int fillColor = frac > 0.7f ? 0xFFFF5555 : frac > 0.4f ? 0xFFFFFF55 : 0xFF55FF55;
-        extractor.fill(barX, barY, barX + fillW, barY + barH, fillColor);
     }
 }
