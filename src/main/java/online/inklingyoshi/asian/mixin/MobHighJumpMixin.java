@@ -73,9 +73,7 @@ public class MobHighJumpMixin {
             emotionalDamage$noProgressTicks++;
         }
 
-        boolean unreachable = mob.getNavigation().isStuck()
-            || (mob.getNavigation().getPath() == null && !mob.getNavigation().isInProgress())
-            || emotionalDamage$noProgressTicks >= 30;
+        boolean unreachable = emotionalDamage$noProgressTicks >= 60;
         if (!unreachable) return;
 
         double capped = Math.min(height, MAX_JUMP_HEIGHT);

@@ -20,15 +20,15 @@ public abstract class CreeperInstaBoomMixin {
     protected abstract void emotionalDamage$invokeExplodeCreeper();
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void instaExplode(CallbackInfo ci) {
+    private void instaIgnite(CallbackInfo ci) {
         Creeper self = (Creeper) (Object) this;
         if (self.level().isClientSide()) return;
         if (!ModGameRules.enabled(((ServerLevel) self.level()).getServer(), ModGameRules.CREEPER_INSTA_BOOM)) return;
-        if (self.isRemoved()) return;
+        if (self.isRemoved() || self.isIgnited()) return;
 
         for (Player player : ((ServerLevel) self.level()).players()) {
             if (player.distanceToSqr(self) < EXPLOSION_RANGE_SQ) {
-                emotionalDamage$invokeExplodeCreeper();
+                self.ignite();
                 return;
             }
         }
