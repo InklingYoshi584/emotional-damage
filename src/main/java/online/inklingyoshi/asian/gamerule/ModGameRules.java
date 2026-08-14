@@ -16,6 +16,7 @@ public final class ModGameRules {
     public static final GameRule<Boolean> ITEM_TAX = rule(GameRuleCategory.PLAYER, "item_tax", true);
     public static final GameRule<Boolean> SOCIAL_ANXIETY = rule(GameRuleCategory.MOBS, "social_anxiety", true);
     public static final GameRule<Boolean> PHANTOM_SPAWNER = rule(GameRuleCategory.SPAWNING, "phantom_spawner", true);
+    public static final GameRule<Boolean> CREEPER_INSTA_BOOM = rule(GameRuleCategory.MOBS, "creeper_insta_boom", true);
     public static final GameRule<Boolean> POISON_GRASS = rule(GameRuleCategory.PLAYER, "poison_grass", true);
     public static final GameRule<Boolean> BLOCK_DAMAGE = rule(GameRuleCategory.PLAYER, "block_damage", true);
     public static final GameRule<Boolean> IDLE_DAMAGE = rule(GameRuleCategory.PLAYER, "idle_damage", true);
