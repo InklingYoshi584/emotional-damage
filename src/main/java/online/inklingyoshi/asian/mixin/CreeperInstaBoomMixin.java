@@ -33,4 +33,9 @@ public abstract class CreeperInstaBoomMixin {
             }
         }
     }
+
+    @Inject(method = "spawnLingeringCloud", at = @At("HEAD"), cancellable = true)
+    private void noAreaEffectCloud(CallbackInfo ci) {
+        ci.cancel();
+    }
 }
