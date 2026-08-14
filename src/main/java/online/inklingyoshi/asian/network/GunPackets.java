@@ -107,7 +107,7 @@ public final class GunPackets {
                 int actionId = player.getRandom().nextInt(4);
                 gp.emotionalDamage$setGunState(GunChallengeState.ACTION);
                 gp.emotionalDamage$setGunAction(actionId);
-                gp.emotionalDamage$setGunTimer(20);
+                gp.emotionalDamage$setGunTimer(0);
                 ServerPlayNetworking.send(player, new ShowActionS2CPayload(actionId));
             } else {
                 char[] buttons = gp.emotionalDamage$getGunButtons();
