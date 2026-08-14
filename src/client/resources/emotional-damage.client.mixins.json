@@ -7,7 +7,7 @@
 		"DifficultyButtonsMixin",
 		"CreateWorldScreenGameTabMixin",
 		"GunKeyboardMixin",
-		"GunHoldPoseMixin",
+		"GunHeldPoseMixin",
 	],
 	"injectors": {
 		"defaultRequire": 1
