@@ -8,6 +8,7 @@
 		"CreateWorldScreenGameTabMixin",
 		"GunKeyboardMixin",
 		"GunHeldPoseMixin",
+		"GunThirdPersonPoseMixin",
 	],
 	"injectors": {
 		"defaultRequire": 1
