@@ -7,15 +7,27 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemUseAnimation;
 import online.inklingyoshi.asian.EmotionalDamage;
 import online.inklingyoshi.asian.network.GunPackets;
 
 import java.util.Random;
 
+
 public class GunItem extends Item {
 
     public GunItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.CROSSBOW;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
+        return 72000;
     }
 
     @Override

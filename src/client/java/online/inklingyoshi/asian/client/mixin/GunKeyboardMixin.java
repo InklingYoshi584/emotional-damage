@@ -14,12 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(KeyboardHandler.class)
 public class GunKeyboardMixin {
 
-    @Inject(method = "keyPress", at = @At("HEAD"))
+    @Inject(method = "keyPress", at = @At("HEAD"), cancellable = true)
     private void interceptGunKeys(long window, int action, KeyEvent event, CallbackInfo ci) {
-        if (!ClientGunTracker.isActive || ClientGunTracker.inAction) return;
-        if (action != GLFW.GLFW_PRESS) return;
-        if (event.key() != ClientGunTracker.expectedKeyCode) return;
-
-        ClientPlayNetworking.send(new GunPackets.KeyPressedC2SPayload());
+        if (!ClientGunTracker.isActive) return;
+        if (action == GLFW.GLFW_PRESS && !ClientGunTracker.inAction
+                && event.key() == ClientGunTracker.expectedKeyCode) {
+            ClientPlayNetworking.send(new GunPackets.KeyPressedC2SPayload());
+        }
+        ci.cancel();
     }
 }
