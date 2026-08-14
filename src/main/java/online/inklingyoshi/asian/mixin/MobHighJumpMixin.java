@@ -21,6 +21,7 @@ public class MobHighJumpMixin {
     private static final double MIN_JUMP_HEIGHT = 2.0;
     private static final double GRAVITY = 0.08;
     private static final int JUMP_COOLDOWN = 20;
+    private static final double MAX_HORIZONTAL_DISTANCE = 8.0;
 
     @Unique
     private int emotionalDamage$jumpCooldown;
@@ -58,6 +59,12 @@ public class MobHighJumpMixin {
         double dx = player.getX() - self.getX();
         double dz = player.getZ() - self.getZ();
         double horiz = Math.sqrt(dx * dx + dz * dz);
+
+        if (horiz > MAX_HORIZONTAL_DISTANCE) {
+            emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
+            emotionalDamage$noProgressTicks = 0;
+            return;
+        }
 
         if (horiz < emotionalDamage$lastTargetDistance - 0.1) {
             emotionalDamage$lastTargetDistance = horiz;
