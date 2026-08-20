@@ -6,6 +6,7 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import online.inklingyoshi.asian.gamerule.ModGameRules;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,19 +17,30 @@ public abstract class CreeperInstaBoomMixin {
 
     private static final double EXPLOSION_RANGE_SQ = 3.0 * 3.0;
 
+    @Unique
+    private int emotionalDamage$fuseTicks;
+
     @Invoker("explodeCreeper")
     protected abstract void emotionalDamage$invokeExplodeCreeper();
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void instaIgnite(CallbackInfo ci) {
+    private void instaFuse(CallbackInfo ci) {
         Creeper self = (Creeper) (Object) this;
         if (self.level().isClientSide()) return;
         if (!ModGameRules.enabled(((ServerLevel) self.level()).getServer(), ModGameRules.CREEPER_INSTA_BOOM)) return;
-        if (self.isRemoved() || self.isIgnited()) return;
+        if (self.isRemoved()) return;
+
+        if (emotionalDamage$fuseTicks > 0) {
+            emotionalDamage$fuseTicks--;
+            if (emotionalDamage$fuseTicks == 0) {
+                emotionalDamage$invokeExplodeCreeper();
+            }
+            return;
+        }
 
         for (Player player : ((ServerLevel) self.level()).players()) {
             if (player.distanceToSqr(self) < EXPLOSION_RANGE_SQ) {
-                self.ignite();
+                emotionalDamage$fuseTicks = 5;
                 return;
             }
         }
