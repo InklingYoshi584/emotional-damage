@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Steal taunt triggers living on Block: breaking a loot chest, and placing a
@@ -24,7 +25,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class StealTauntBlockMixin {
 
     @Inject(method = "playerWillDestroy", at = @At("HEAD"))
-    private void onChestBroken(Level level, BlockPos pos, BlockState state, Player player, CallbackInfo ci) {
+    private void onChestBroken(Level level, BlockPos pos, BlockState state, Player player,
+            CallbackInfoReturnable<BlockState> cir) {
         if (level.isClientSide()) return;
         if (!(state.getBlock() instanceof ChestBlock)) return;
         if (!(player instanceof ServerPlayer serverPlayer)) return;
