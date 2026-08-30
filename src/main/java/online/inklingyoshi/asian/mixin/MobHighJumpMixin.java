@@ -50,11 +50,6 @@ public class MobHighJumpMixin {
         if (emotionalDamage$jumpCooldown > 0) return;
 
         double height = player.getY() - self.getY();
-        if (height <= MIN_JUMP_HEIGHT) {
-            emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
-            emotionalDamage$noProgressTicks = 0;
-            return;
-        }
 
         double dx = player.getX() - self.getX();
         double dz = player.getZ() - self.getZ();
@@ -76,17 +71,23 @@ public class MobHighJumpMixin {
         boolean unreachable = emotionalDamage$noProgressTicks >= 60;
         if (!unreachable) return;
 
-        double capped = Math.min(height, MAX_JUMP_HEIGHT);
-        double vy = Math.sqrt(2.0 * GRAVITY * capped);
+        if (height > MIN_JUMP_HEIGHT) {
+            double capped = Math.min(height, MAX_JUMP_HEIGHT);
+            double vy = Math.sqrt(2.0 * GRAVITY * capped);
 
-        Vec3 motion = self.getDeltaMovement();
-        double push = 0.15;
-        double mx = horiz > 0 ? dx / horiz * push : 0.0;
-        double mz = horiz > 0 ? dz / horiz * push : 0.0;
+            Vec3 motion = self.getDeltaMovement();
+            double push = 0.15;
+            double mx = horiz > 0 ? dx / horiz * push : 0.0;
+            double mz = horiz > 0 ? dz / horiz * push : 0.0;
 
-        mob.setDeltaMovement(motion.add(mx, vy, mz));
+            mob.setDeltaMovement(motion.add(mx, vy, mz));
+            emotionalDamage$fallImmunityTicks = (int) Math.ceil(2.0 * vy / GRAVITY) + 5;
+        } else {
+            // Player at the same level or below: drag them to the mob instead of leaping.
+            player.teleportTo(self.getX(), self.getY(), self.getZ());
+            player.fallDistance = 0;
+        }
         emotionalDamage$jumpCooldown = JUMP_COOLDOWN;
-        emotionalDamage$fallImmunityTicks = (int) Math.ceil(2.0 * vy / GRAVITY) + 5;
         emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
         emotionalDamage$noProgressTicks = 0;
     }
