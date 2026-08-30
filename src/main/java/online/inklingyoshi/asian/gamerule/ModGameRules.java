@@ -13,6 +13,7 @@ public final class ModGameRules {
 
     public static final GameRule<Boolean> HIGH_JUMP = rule(GameRuleCategory.MOBS, "high_jump", true);
     public static final GameRule<Boolean> INSULTS = rule(GameRuleCategory.MOBS, "insults", true);
+    public static final GameRule<Boolean> STEAL_TAUNT = rule(GameRuleCategory.MOBS, "steal_taunt", true);
     public static final GameRule<Boolean> ITEM_TAX = rule(GameRuleCategory.PLAYER, "item_tax", true);
     public static final GameRule<Boolean> SOCIAL_ANXIETY = rule(GameRuleCategory.MOBS, "social_anxiety", true);
     public static final GameRule<Boolean> PHANTOM_SPAWNER = rule(GameRuleCategory.SPAWNING, "phantom_spawner", true);
