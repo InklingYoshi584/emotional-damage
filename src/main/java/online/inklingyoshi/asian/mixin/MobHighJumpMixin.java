@@ -24,8 +24,8 @@ public class MobHighJumpMixin {
     private static final double MAX_HORIZONTAL_DISTANCE = 8.0;
 
     private static final int LEAP_COOLDOWN = 60;
-    private static final double LEAP_HORIZONTAL_PUSH = 0.45;
-    private static final double LEAP_VERTICAL_BOOST = 0.35;
+    private static final double LEAP_HORIZONTAL_PUSH = 0.7;
+    private static final double LEAP_VERTICAL_BOOST = 0.55;
 
     @Unique
     private int emotionalDamage$jumpCooldown;
