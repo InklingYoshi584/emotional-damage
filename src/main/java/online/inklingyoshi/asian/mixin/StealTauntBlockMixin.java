@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.HopperBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import online.inklingyoshi.asian.attack.StealTaunt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,8 +31,8 @@ public class StealTauntBlockMixin {
         if (level.isClientSide()) return;
         if (!(state.getBlock() instanceof ChestBlock)) return;
         if (!(player instanceof ServerPlayer serverPlayer)) return;
-        if (!StealTauntMixin.hasLoot(level, pos)) return;
-        StealTauntMixin.triggerTaunt((ServerLevel) level, serverPlayer);
+        if (!StealTaunt.hasLoot(level, pos)) return;
+        StealTaunt.triggerTaunt((ServerLevel) level, serverPlayer);
     }
 
     @Inject(method = "setPlacedBy", at = @At("HEAD"))
@@ -42,7 +43,7 @@ public class StealTauntBlockMixin {
         if (!(placer instanceof ServerPlayer serverPlayer)) return;
         BlockPos chestPos = pos.above();
         if (!(level.getBlockState(chestPos).getBlock() instanceof ChestBlock)) return;
-        if (!StealTauntMixin.hasLoot(level, chestPos)) return;
-        StealTauntMixin.triggerTaunt((ServerLevel) level, serverPlayer);
+        if (!StealTaunt.hasLoot(level, chestPos)) return;
+        StealTaunt.triggerTaunt((ServerLevel) level, serverPlayer);
     }
 }
