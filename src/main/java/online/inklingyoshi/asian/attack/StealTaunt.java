@@ -9,14 +9,13 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import online.inklingyoshi.asian.gamerule.ModGameRules;
 
 import java.util.List;
 
 /**
  * Steal taunt: opening/breaking a loot chest, placing a hopper under one, or
  * angering a piglin makes nearby Enemy mobs roast the player, who then dies
- * of emotional damage 1 second later.
+ * of emotional damage 1 second later. Always on (no gamerule gate).
  */
 public final class StealTaunt {
     private StealTaunt() {}
@@ -39,8 +38,6 @@ public final class StealTaunt {
     }
 
     public static void triggerTaunt(ServerLevel level, ServerPlayer player) {
-        if (!ModGameRules.enabled(level.getServer(), ModGameRules.STEAL_TAUNT)) return;
-
         String taunt = TAUNTS[level.getRandom().nextInt(TAUNTS.length)];
         List<Mob> mobs = level.getEntitiesOfClass(Mob.class,
             player.getBoundingBox().inflate(TAUNT_RADIUS),
