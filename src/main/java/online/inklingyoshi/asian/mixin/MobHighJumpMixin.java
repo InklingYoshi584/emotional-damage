@@ -23,6 +23,10 @@ public class MobHighJumpMixin {
     private static final int JUMP_COOLDOWN = 20;
     private static final double MAX_HORIZONTAL_DISTANCE = 8.0;
 
+    private static final int LEAP_COOLDOWN = 60;
+    private static final double LEAP_HORIZONTAL_PUSH = 0.45;
+    private static final double LEAP_VERTICAL_BOOST = 0.35;
+
     @Unique
     private int emotionalDamage$jumpCooldown;
 
@@ -35,6 +39,9 @@ public class MobHighJumpMixin {
     @Unique
     private int emotionalDamage$noProgressTicks;
 
+    @Unique
+    private int emotionalDamage$leapCooldown;
+
     @Inject(method = "tick", at = @At("HEAD"))
     private void tryHighJump(CallbackInfo ci) {
         LivingEntity self = (LivingEntity) (Object) this;
@@ -43,6 +50,7 @@ public class MobHighJumpMixin {
         if (!ModGameRules.enabled(((ServerLevel) self.level()).getServer(), ModGameRules.HIGH_JUMP)) return;
         if (emotionalDamage$jumpCooldown > 0) emotionalDamage$jumpCooldown--;
         if (emotionalDamage$fallImmunityTicks > 0) emotionalDamage$fallImmunityTicks--;
+        if (emotionalDamage$leapCooldown > 0) emotionalDamage$leapCooldown--;
 
         LivingEntity target = mob.getTarget();
         if (!(target instanceof Player player)) return;
@@ -59,6 +67,15 @@ public class MobHighJumpMixin {
             emotionalDamage$lastTargetDistance = Double.MAX_VALUE;
             emotionalDamage$noProgressTicks = 0;
             return;
+        }
+
+        // Periodic lunge toward the player, independent of the stall detector.
+        if (emotionalDamage$leapCooldown == 0) {
+            Vec3 motion = self.getDeltaMovement();
+            double mx = horiz > 0 ? dx / horiz * LEAP_HORIZONTAL_PUSH : 0.0;
+            double mz = horiz > 0 ? dz / horiz * LEAP_HORIZONTAL_PUSH : 0.0;
+            mob.setDeltaMovement(motion.add(mx, LEAP_VERTICAL_BOOST, mz));
+            emotionalDamage$leapCooldown = LEAP_COOLDOWN;
         }
 
         if (horiz < emotionalDamage$lastTargetDistance - 0.1) {
